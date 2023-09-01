@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
-import {
-  FormControl,
-  Grid,
-  Select,
-  MenuItem,
-
-} from '@mui/material'
-import Profiles from 'src/views/profile/profile'
-import ProfileFilter from 'src/views/profile/profilefilter'
+import { FormControl, Grid, Select, MenuItem } from '@mui/material'
+import Profiles from 'src/views/Profile/profile'
+import ProfileFilter from 'src/views/Profile/Profilefilter'
 
 const index = () => {
   const [isIconClicked, setIsIconClicked] = useState(false)
