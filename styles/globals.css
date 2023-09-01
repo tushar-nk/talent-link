@@ -1,0 +1,281 @@
+html,
+body {
+  min-height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
+code {
+  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+  padding: 0.1rem 0.4rem;
+  font-size: 90%;
+  color: #d400ff;
+  border-radius: 0.1335rem;
+}
+code:not([class*='language-']):before,
+code:not([class*='language-']):after {
+  content: '`';
+}
+code[class*='language-'] {
+  padding: 0;
+} 
+
+
+/*-------------------Common Table container styles------------------------------------- */
+.table-container {
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  /* padding: 20px;  */
+}
+.x-scroll {
+  overflow-x: scroll;
+}
+
+/* Style for the vertical scrollbar */
+/* .table-container::-webkit-scrollbar {
+  width: 0px; 
+} */
+
+/* Style for the track of the vertical scrollbar */
+.table-container::-webkit-scrollbar-track {
+  background: transparent; /* Background color of the track */
+}
+
+/* Style for the thumb (handle) of the vertical scrollbar */
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #272323;
+  border-radius: 2px; 
+}
+
+/* Style for the thumb when hovering over it */
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #451414; 
+}
+
+
+/* Table borders */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  /* border: 1px solid #e0e0e0; */
+  border-radius: 8px;
+}
+
+/* Table header row */
+.consultation_table_head {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Table header cell */
+.consultation_table_head_text {
+  padding: 8px;
+  border-right: 1px solid #e0e0e0;
+}
+
+/* Table body row */
+.consultation_table_body_row {
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.2s ease; 
+}
+
+/* Table row hover effect */
+.consultation_table_body_row:hover {
+  background-color: #f5f5f5; 
+}
+
+/* Table body cell */
+.consultation_table_body_text {
+  padding: 8px;
+  border-right: 1px solid #e0e0e0;
+}
+/*--------------------------------------------- common table styles end -------------------------- */
+
+
+/* ------------------------------------------------- DASHBOARD CSS ----------------------------------------------- */
+.dashboard-table {
+  padding-top: 24px;
+}
+.dashboard-top-card {
+  padding-bottom: 34px;
+}
+.pie-chart {
+  height: 320px !important;
+}
+
+.main {
+  max-height: 80vh;
+  margin: 2rem 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.profile-head {
+  margin: 0px;
+}
+.profile-trends {
+  padding-bottom: 20px;
+}
+
+/* .resume-title {
+  background-color: grey;
+}
+
+.skill-title .css-1dybbl5-MuiChip-label{
+  background-color: #f8954a;
+} */
+.hire-details-card {
+  padding: 20px;
+  padding-top: 10px;
+}
+/* .card{
+  width: 600px;
+} */
+.hire-details-card h4 {
+  margin-bottom: 10px;
+}
+
+.role-edit {
+  width: 14%;
+}
+
+.react-datepicker__month-wrapper {
+  background-color: white;
+  border: 1px solid #ccc; /* Add a border for separation */
+}
+  /* width: 12%; */
+.details-field {
+  display: block;
+}
+.details-field .MuiGrid-item {
+  padding-left: 10px;
+  padding-top: 7px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.project-details-textfield {
+  width: 334px;
+}
+.hiring-details-remark {
+  margin-top: 10px;
+  color: black;
+}
+.employee-detail {
+  padding-top: 30px;
+}
+.employees-profile {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.private-detail {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+}
+.icon-text {
+  padding-left: 10px;
+}
+.profile-grid {
+  padding-left: 35px;
+  /* padding-top: 15px; */
+}
+.employee {
+  text-align: center;
+}
+.divider {
+  border-right: 2px solid;
+  padding-right: 15px;
+}
+.company-details {
+  padding: 20px;
+  height: 325px;
+  margin-bottom: 20px;
+}
+.technical-skill {
+  margin-bottom: 30px;
+}
+.head-top {
+  padding: 15px;
+  background-color: burlywood;
+}
+.summery {
+  padding: 20px;
+  display: flex;
+  row-gap: 13px;
+  flex-direction: column;
+}
+.certification {
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 320px;
+}
+.rating {
+  padding: 20px;
+  height: 200px;
+}
+.education{
+  padding-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+
+/* --------------------------------------------code V css------------------------ */
+.dashboard-table {
+  padding-top: 24px;
+}
+
+.css-12mrtck-MuiTableHead-root {
+  text-transform: none !important;
+}
+
+.css-18x7v6g-MuiTableCell-root {
+  padding: 15px 0px 15px 0px !important;
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+}
+
+.resume-title {
+  background-color: #f8954a;
+}
+
+.skill-title .css-1dybbl5-MuiChip-label {
+  font-size: 18px;
+  padding: 18px;
+}
+
+.role-edit {
+  width: 12%;
+}
+
+.form-layout {
+  padding: 25px 55px 25px 55px !important;
+}
+
+.request-layout {
+  padding: 55px 55px 55px 55px !important;
+}
+
+.request-layout-btn {
+  padding: 0px 55px 55px 55px !important;
+}
+
+.role-layout {
+  padding: 10px 70px;
+}
+
+.category-status .css-i9ga9f-MuiCardHeader-root {
+  padding: 0px !important;
+}
+
