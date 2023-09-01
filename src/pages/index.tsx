@@ -66,11 +66,12 @@ const LoginPage = () => {
     password: '',
     showPassword: false
   })
+  console.log('hello')
 
   // ** Hook
   const theme = useTheme()
   const router = useRouter()
-  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false)
 
   const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value })
