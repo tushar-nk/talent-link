@@ -1,19 +1,9 @@
 import React from 'react'
-import {
-  FormControl,
-  Grid,
-  Select,
-  MenuItem,
-
-} from '@mui/material'
-import Profiles from 'src/views/profile/profile';
-import ProfileFilter from 'src/views/profile/profilefilter';
+import { FormControl, Grid, Select, MenuItem } from '@mui/material'
+import Profiles from 'src/views/Profile/Profiles'
+import ProfileFilter from 'src/views/Profile/profilefilter'
 
 const Profile = () => {
-
-
- 
-
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -46,4 +36,4 @@ const Profile = () => {
   )
 }
 
-export default Profile;
+export default Profile
