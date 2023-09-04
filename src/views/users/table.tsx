@@ -1,6 +1,5 @@
 import React from 'react'
 import Table from 'src/@core/table/Table';
-import IconService from 'src/@core/utils/Icons';
 import Image from "next/image";
 import TableHeader from './TableHeaders';
 import TableHeaderUser from './TableHeaders';

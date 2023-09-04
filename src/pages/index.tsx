@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, ReactNode, useState } from 'react'
+import { MouseEvent, ReactNode, useState } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -66,16 +66,11 @@ const LoginPage = () => {
     password: '',
     showPassword: false
   })
-  console.log('hello')
 
   // ** Hook
   const theme = useTheme()
   const router = useRouter()
-  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false)
-
-  const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
@@ -175,8 +170,8 @@ const LoginPage = () => {
           <Formik
             initialValues={{ email: '', password: '' }}
             validationSchema={validationSchema}
-            onSubmit={values => {
-              router.push('/pages/dashboard')
+            onSubmit={() => {
+              router.push('/pages/dashboard');
             }}
           >
             {({ handleSubmit }) => (

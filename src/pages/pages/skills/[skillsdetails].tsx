@@ -10,8 +10,12 @@ import {
   CardActions,
   Button
 } from '@mui/material'
+import { useRouter } from 'next/router'
 
-export default function index() {
+export default function SkillsDetails() {
+  const router = useRouter()
+  const { skills } = router.query
+
   return (
     <Card>
       <Grid sx={{ ml: 20, mt: 10, mr: 20, mb: 10 }}>
@@ -19,7 +23,7 @@ export default function index() {
           <CardHeader title='Skill' titleTypographyProps={{ variant: 'h2' }} />
           <Grid container spacing={5}>
             <Grid item xs={12} sm={9}>
-              <TextField fullWidth sx={{ paddingLeft: 4 }} />
+              <TextField fullWidth value={skills || ''} sx={{ paddingLeft: 4 }} />
             </Grid>
           </Grid>
         </CardContent>

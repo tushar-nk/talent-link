@@ -14,7 +14,7 @@ import { CardStatsVerticalProps } from 'src/@core/components/card-statistics/typ
 
 const CardStatsVertical = (props: CardStatsVerticalProps) => {
   // ** Props
-  const { title, subtitle, color, icon, stats, trend, trendNumber } = props
+  const { title, color, icon, } = props
 
   return (
     <Card>
@@ -23,12 +23,12 @@ const CardStatsVertical = (props: CardStatsVerticalProps) => {
           <Avatar sx={{ boxShadow: 3, marginRight: 4, color: 'common.white', backgroundColor: `${color}.main` }}>
             {icon}
           </Avatar>
-          <IconButton size='small' aria-label='settings' className='card-more-options' sx={{ color: 'text.secondary' }}>
+          {/* <IconButton size='small' aria-label='settings' className='card-more-options' sx={{ color: 'text.secondary' }}>
             <DotsVertical />
-          </IconButton>
+          </IconButton> */}
         </Box>
         <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>{title}</Typography>
-        <Box sx={{ marginTop: 1.5, display: 'flex', flexWrap: 'wrap', marginBottom: 1.5, alignItems: 'flex-start' }}>
+        {/* <Box sx={{ marginTop: 1.5, display: 'flex', flexWrap: 'wrap', marginBottom: 1.5, alignItems: 'flex-start' }}>
           <Typography variant='h6' sx={{ mr: 2 }}>
             {stats}
           </Typography>
@@ -39,8 +39,8 @@ const CardStatsVertical = (props: CardStatsVerticalProps) => {
           >
             {trendNumber}
           </Typography>
-        </Box>
-        <Typography variant='caption'>{subtitle}</Typography>
+        </Box> */}
+        {/* <Typography variant='caption'>{subtitle}</Typography> */}
       </CardContent>
     </Card>
   )

@@ -15,9 +15,6 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Here you can add your logic to handle the password recovery process
-    // For example, you might want to send a reset password email to the provided email address
-    // After the process is done, you can close the modal using the onClose callback
     onClose();
   };
 
@@ -28,18 +25,18 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          height: '100vh', // Full viewport height
-          overflow: 'auto', // Enable scrolling if the content overflows
+          height: '100vh', 
+          overflow: 'auto', 
         }}
       >
         <Box
           sx={{
             padding: 3,
-            width: '80%', // Adjust the width as needed
+            width: '80%', 
             backgroundColor: 'white',
-            borderRadius: '8px', // Optional: Add border radius
-            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional: Add box shadow
-            maxWidth: '400px', // Limit the maximum width
+            borderRadius: '8px',
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', 
+            maxWidth: '400px', 
           }}
         >
           <Typography variant="h5" sx={{ marginBottom: 2 }}>

@@ -10,12 +10,16 @@ import {
   CardActions,
   Button,
   FormControl,
-  MenuItem
-} from '@mui/material'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
+  MenuItem,
+} from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useRouter } from 'next/router';
 
-export default function index() {
+export default function  SubCategoryDetails() {
     const [language, setLanguage] = useState<string[]>([])
+    const router = useRouter()
+  const category: string[] | undefined = router.query.category as string[] | undefined;
+  const sub_category: string[]| undefined = router.query.sub_category as string[] | undefined;
 
     const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
         setLanguage(event.target.value as string[])
@@ -29,7 +33,8 @@ export default function index() {
               <FormControl sx={{width: '50%'}}>
               <CardHeader title='Category' titleTypographyProps={{ variant: 'h2' }} />
                 <Select
-                  value={language}
+                value={category}
+                defaultValue={language}
                   onChange={handleSelectChange}
                   id='form-layouts-separator-multiple-select'
                   labelId='form-layouts-separator-multiple-select-label'
@@ -46,7 +51,7 @@ export default function index() {
           <CardHeader title='Sub Category' titleTypographyProps={{ variant: 'h2' }} />
           <Grid container spacing={5}>
             <Grid item xs={12} sm={9}>
-              <TextField fullWidth sx={{ paddingLeft: 4 }} />
+              <TextField   defaultValue={" "} value={sub_category} fullWidth sx={{ paddingLeft: 4 }} />
             </Grid>
           </Grid>
         </CardContent>

@@ -10,7 +10,6 @@ import {
 
 import React, { useContext } from "react";
 import Image from "next/image";
-import IconService from 'src/@core/utils/Icons';
 
 import TableHeaderSearch from "src/@core/table/TableHeaderSearch";
 
@@ -41,7 +40,8 @@ export default function TableHeaderResume({ isAddButton,data,serachFunction }: T
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '45rem'
+          gap: '40rem',
+          padding: '5px'
         }}
  
       >

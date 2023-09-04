@@ -1,10 +1,11 @@
 import React from 'react'
 import Table from 'src/@core/table/Table';
-import IconService from 'src/@core/utils/Icons';
+
 import Image from "next/image";
 import { Divider } from '@mui/material';
 import TableHeader from '../role/TableHeaders';
 import TableHeaderCategories from './TableHeaders';
+import IconService from 'src/@core/utils/Icons';
 const CategoryTable = () => {
   const userData: any = [
     {
@@ -28,11 +29,17 @@ const CategoryTable = () => {
       Header: "Banner",
       accessor: "banner",
       sort: true,
+      Cell: ({ value }: any) => (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{value}</div>
+      )
     },
     {
       Header: " Category",
       accessor: "category",
       sort: true,
+      Cell: ({ value }: any) => (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{value}</div>
+      )
     },
     {
       Header: "Actions",
@@ -40,7 +47,7 @@ const CategoryTable = () => {
       sort: true,
       Cell: ({ value, row }: any) => {
         return (
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Image
               src={IconService.DeleteRedRounded}
               alt=""

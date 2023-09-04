@@ -1,15 +1,14 @@
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 
 // ** Icons Imports
-import Poll from 'mdi-material-ui/Poll'
-import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-import BriefcaseVariantOutline from 'mdi-material-ui/BriefcaseVariantOutline'
 
 import BusinessIcon from '@mui/icons-material/Business'
 import EditNoteIcon from '@mui/icons-material/EditNote'
 import CategoryIcon from '@mui/icons-material/Category'
+
 // ** Custom Components Imports
 import CardStatisticsVerticalComponent from 'src/@core/components/card-statistics/card-stats-vertical'
 
@@ -17,11 +16,11 @@ import CardStatisticsVerticalComponent from 'src/@core/components/card-statistic
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Demo Components Imports
-import Table from 'src/views/dashboard/Table'
 import TopCompanies from 'src/views/dashboard/TopCompanies'
 import Hiring from 'src/views/dashboard/Hiring'
 import ProfileTrends from 'src/views/dashboard/ProfileTrends'
 import HiringEmployee from 'src/views/dashboard/HiringEmployee'
+import SubRequestTable from 'src/views/support-request/table'
 
 const Dashboard = () => {
   return (
@@ -88,8 +87,26 @@ const Dashboard = () => {
       </div>
 
       <div className='dashboard-table'>
-        <Table />
+        <Typography variant='h5' sx={{ mb: 5 }}>
+          Hiring Request
+        </Typography>
+        <SubRequestTable />
       </div>
+
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid item xs={6}>
+        <Typography variant='h5' sx={{ mt: 10, mb: 5 }}>
+          Latest Profiles
+        </Typography>
+          <SubRequestTable />
+        </Grid>
+        <Grid item xs={6}>
+        <Typography variant='h5' sx={{ mt: 10, mb: 5 }}>
+          Support Request
+        </Typography>
+          <SubRequestTable />
+        </Grid>
+      </Grid>
     </ApexChartWrapper>
   )
 }

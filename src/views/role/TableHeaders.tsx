@@ -48,7 +48,8 @@ export default function TableHeaderRole({ isAddButton,data,serachFunction }: TYP
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '45rem'
+          gap: '40rem',
+          padding: '5px'
         }}
  
       >

@@ -10,9 +10,6 @@ import {
 import { useRouter } from "next/router";
 
 import React, { useContext } from "react";
-import Image from "next/image";
-import IconService from 'src/@core/utils/Icons';
-
 import TableHeaderSearch from "src/@core/table/TableHeaderSearch";
 
 //   import CommonDateRangePicker from "@/components/Common/DateRange/DateRangePicker";
@@ -47,7 +44,8 @@ export default function TableHeaderCompany({ isAddButton,data,serachFunction }: 
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '45rem'
+          gap: '40rem',
+          padding: '5px'
         }}
  
       >

@@ -16,9 +16,6 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Here you can add your logic to handle the password recovery process
-    // For example, you might want to send a reset password email to the provided email address
-    // After the process is done, you can close the modal using the onClose callback
     onClose();
   };
 
@@ -33,15 +30,15 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
           width: 400,
           bgcolor: 'background.paper',
           boxShadow: 24,
-          p: 4,
-          borderRadius: 4,
+          p: 6,
         }}
       >
         <IconButton
           sx={{
             position: 'absolute',
-            top: 0,
+            top: 3,
             right: 3,
+            p: 3
           }}
           onClick={onClose}
         >
@@ -50,7 +47,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
         <Typography variant="h5" sx={{ marginBottom: 2 }}>
           Forgot Password
         </Typography>
-        <Typography variant="h6" sx={{ marginBottom: 2 }}>
+        <Typography  sx={{ marginBottom: 2, fontSize: 18 }}>
           Enter your registered email below to receive password reset instructions.
         </Typography>
         <form onSubmit={handleSubmit}>

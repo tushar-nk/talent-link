@@ -14,14 +14,22 @@ import FormControl from '@mui/material/FormControl'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Button from '@mui/material/Button'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-export default function index() {
+export default function SupportRequestDetails() {
   // ** States
   const [language, setLanguage] = useState<string[]>([])
+  const [date, setDate] = useState<Date | null | undefined>(null)
+
 
   // Handle Select
   const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
     setLanguage(event.target.value as string[])
+  }
+
+  const CustomInput = (props: any) => {
+    return <TextField fullWidth {...props} label='Birth Date' autoComplete='off' />
   }
 
   return (
@@ -29,10 +37,19 @@ export default function index() {
       <form onSubmit={e => e.preventDefault()}>
         <CardContent className='request-layout'>
           <Grid container spacing={5}>
-            <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Date' placeholder='23-7-2023' />
+            <Grid item xs={12} sm={3}>
+            <DatePicker
+                selected={date}
+                showYearDropdown
+                showMonthDropdown
+                placeholderText='MM-DD-YYYY'
+                customInput={<CustomInput />}
+                id='form-layouts-separator-date'
+                onChange={(date: Date) => setDate(date)}
+                className='custom-datepicker'
+              />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={9}>
               <TextField fullWidth label='User Name' placeholder='carter Leonard' />
             </Grid>
             <Grid item xs={12} sm={6}>

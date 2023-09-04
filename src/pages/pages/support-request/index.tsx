@@ -7,6 +7,7 @@ import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
 import BriefcaseVariantOutline from 'mdi-material-ui/BriefcaseVariantOutline'
 
 import CardStatisticsVerticalComponent from 'src/@core/components/card-statistics/card-stats-vertical'
+import TableHeaderRequest from 'src/views/support-request/TableHeaders';
 
 const SupportRequest = () => {
   return (
@@ -68,7 +69,11 @@ const SupportRequest = () => {
             </Grid>
           </Grid>
           </div>
-      
+          <div style={{ marginBottom: '20px' }}>
+          <TableHeaderRequest
+          serachFunction={(e: number) => (e)}
+        />
+        </div>
     <SubRequestTable/>
     </>
   )

@@ -12,6 +12,7 @@ import PortraitIcon from '@mui/icons-material/Portrait'
 import DescriptionIcon from '@mui/icons-material/Description'
 import LaunchIcon from '@mui/icons-material/Launch'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
+import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
 
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
@@ -86,7 +87,7 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       title: 'Support Subject',
-      icon: CubeOutline,
+      icon: BrowserUpdatedIcon,
       path: '/pages/support-subject'
     },
     {

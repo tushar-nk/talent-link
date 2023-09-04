@@ -1,8 +1,8 @@
 import React from 'react'
 import Table from 'src/@core/table/Table';
-import IconService from 'src/@core/utils/Icons';
 import Image from "next/image";
 import TableHeaderCompany from './TableHeaders';
+import IconService from 'src/@core/utils/Icons';
 const CompanyListingTable = () => {
   const userData: any = [
     {

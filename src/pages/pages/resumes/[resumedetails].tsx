@@ -11,7 +11,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import DatePicker from 'react-datepicker'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { Button, CardActions, Chip, Stack, Typography } from '@mui/material'
 
 // ** icons
@@ -26,8 +27,8 @@ const ImgStyled = styled('img')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius
 }))
 
-export default function index() {
-  const [imgSrc, setImgSrc] = useState<string>('/images/avatars/1.png')
+export default function ResumeDetails() {
+  const [imgSrc] = useState<string>('/images/avatars/1.png')
   const [company, setCompany] = useState<string[]>([])
   const [designation, setDesignation] = useState<string[]>([])
   const [language, setLanguage] = useState<string[]>([])
@@ -111,8 +112,8 @@ export default function index() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={5} sx={{ ml: 2 }}>
-              <DatePicker
+            <Grid item xs={12} sm={3} sx={{ ml: 2 }}>
+            <DatePicker
                 selected={date}
                 showYearDropdown
                 showMonthDropdown
@@ -120,9 +121,10 @@ export default function index() {
                 customInput={<CustomInput />}
                 id='form-layouts-separator-date'
                 onChange={(date: Date) => setDate(date)}
+                className='custom-datepicker'
               />
             </Grid>
-            <Grid item xs={12} sm={6} sx={{ ml: 2 }}>
+            <Grid item xs={12} sm={8} sx={{ ml: 2 }}>
               <FormControl fullWidth>
                 <InputLabel id='form-layouts-separator-multiple-select-label'>Language</InputLabel>
                 <Select

@@ -9,8 +9,6 @@ import {
 } from "@mui/material";
 
 import React, { useContext } from "react";
-import Image from "next/image";
-import IconService from 'src/@core/utils/Icons';
 import { useRouter } from "next/router";
 
 import TableHeaderSearch from "src/@core/table/TableHeaderSearch";
@@ -48,7 +46,8 @@ export default function TableHeaderCategory({ isAddButton,data,serachFunction }:
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '45rem'
+          gap: '40rem',
+          padding: '5px'
         }}
  
       >

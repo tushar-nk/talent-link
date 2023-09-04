@@ -1,5 +1,5 @@
 // ** React Imports
-import { ChangeEvent, forwardRef, MouseEvent, useState } from 'react'
+import React from 'react' 
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
@@ -14,13 +14,6 @@ import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { Box, Chip, Stack } from '@mui/material'
-
-// ** Third Party Imports
-import DatePicker from 'react-datepicker'
-
-// ** Icons Imports
-import EyeOutline from 'mdi-material-ui/EyeOutline'
-import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import { FormLabel } from '@mui/material'
 
 function formlayoutsseparator() {
