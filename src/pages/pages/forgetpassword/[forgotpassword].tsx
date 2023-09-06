@@ -16,10 +16,6 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
-<<<<<<< HEAD
-=======
-
->>>>>>> d15813c4d190670c666d5b584516aaa45d22c927
     onClose()
   }
 
