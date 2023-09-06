@@ -17,6 +17,7 @@ export default function SupportRequestDetails() {
   const [language, setLanguage] = useState<string[]>([])
   const [date, setDate] = useState<Date | null | undefined>(null)
 
+  console.log(date)
   const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
     setLanguage(event.target.value as string[])
   }
