@@ -19,7 +19,7 @@ export default function index() {
           <CardHeader title='Skill' titleTypographyProps={{ variant: 'h2' }} />
           <Grid container spacing={5}>
             <Grid item xs={12} sm={9}>
-              <TextField fullWidth value={skills || ''} sx={{ paddingLeft: 4 }} />
+              <TextField fullWidth value={'skills' || ''} sx={{ paddingLeft: 4 }} />
             </Grid>
           </Grid>
         </CardContent>
