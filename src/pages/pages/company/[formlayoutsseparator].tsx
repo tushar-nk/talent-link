@@ -16,7 +16,7 @@ import Select from '@mui/material/Select'
 import { Box, Chip, Stack } from '@mui/material'
 
 import { FormLabel } from '@mui/material'
-import { Editor, EditorState, ContentState, convertToRaw, convertFromRaw } from 'draft-js'
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { Editor as WysiwygEditor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
@@ -25,27 +25,26 @@ const cardHeaderStyle = {
   color: 'white' // You can adjust the text color here
 }
 
-function formLayoutsseparator() {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [aboutCompanyText, setAboutCompanyText] = useState('');
+function FormLayoutsseparator() {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty())
+  const [aboutCompanyText, setAboutCompanyText] = useState('')
+  console.log(aboutCompanyText)
 
-  // Function to handle editor content changes
-  const handleEditorChange = (newEditorState) => {
-    setEditorState(newEditorState);
-    // Extract the content and set it in the TextField
-    const contentState = newEditorState.getCurrentContent();
-    const contentText = contentState.getPlainText();
-    setAboutCompanyText(contentText);
-  };
+  const handleEditorChange = newEditorState => {
+    setEditorState(newEditorState)
+    const contentState = newEditorState.getCurrentContent()
+    const contentText = contentState.getPlainText()
+    setAboutCompanyText(contentText)
+  }
 
   // Get the content in JSON format (you can save this in your database)
-  const contentState = editorState.getCurrentContent();
-  const contentStateJSON = JSON.stringify(convertToRaw(contentState));
+  const contentState = editorState.getCurrentContent()
+  const contentStateJSON = JSON.stringify(convertToRaw(contentState))
 
   // Initialize the editor with existing content (if any)
-  const initialContentState = convertFromRaw(JSON.parse(contentStateJSON));
-  const initialEditorState = EditorState.createWithContent(initialContentState);
-
+  const initialContentState = convertFromRaw(JSON.parse(contentStateJSON))
+  const initialEditorState = EditorState.createWithContent(initialContentState)
+  console.log(initialEditorState)
 
   return (
     <>
@@ -102,7 +101,7 @@ function formLayoutsseparator() {
             <Grid item xs={12} sm={4}>
               <FormControl fullWidth>
                 <FormLabel id='form-layouts-separator-category-label'>Sub Cetegory</FormLabel>
-               
+
                 <Select
                   label=' Sub Category'
                   defaultValue='category1'
@@ -160,9 +159,8 @@ function formLayoutsseparator() {
                   defaultValue='category0'
                   id='form-layouts-separator-category'
                   labelId='form-layouts-separator-category-label'
-                
                 >
-                   <MenuItem value='category0'>Country</MenuItem>
+                  <MenuItem value='category0'>Country</MenuItem>
                   <MenuItem value='category1'>India</MenuItem>
                   <MenuItem value='category2'>United State</MenuItem>
                   <MenuItem value='category3'>United Kindom</MenuItem>
@@ -219,7 +217,7 @@ function formLayoutsseparator() {
                   id='form-layouts-separator-category'
                   labelId='form-layouts-separator-category-label'
                 >
-                   <MenuItem value='category0'>Employees</MenuItem>
+                  <MenuItem value='category0'>Employees</MenuItem>
                   <MenuItem value='category1'>a</MenuItem>
                   <MenuItem value='category2'>b</MenuItem>
                   <MenuItem value='category3'>c</MenuItem>
@@ -236,7 +234,7 @@ function formLayoutsseparator() {
                   id='form-layouts-separator-category'
                   labelId='form-layouts-separator-category-label'
                 >
-                   <MenuItem value='category0'>Work Time</MenuItem>
+                  <MenuItem value='category0'>Work Time</MenuItem>
                   <MenuItem value='category1'>8.00 Am - 6.00 Pm</MenuItem>
                   <MenuItem value='category2'>9.00 Am - 7.00 Pm</MenuItem>
                   <MenuItem value='category3'>10..00 Am - 8.00 Pm</MenuItem>
@@ -331,7 +329,7 @@ function formLayoutsseparator() {
                   link: { options: ['link'] }
                 }}
               />
-               {/* <TextField
+              {/* <TextField
                 fullWidth
                 multiline
                 minRows={3}
@@ -362,4 +360,4 @@ function formLayoutsseparator() {
   )
 }
 
-export default formLayoutsseparator
+export default FormLayoutsseparator
