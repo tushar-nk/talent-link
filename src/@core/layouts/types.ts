@@ -24,9 +24,7 @@ export type NavSectionTitle = {
   subject?: string
 }
 
-
-
-export type VerticalNavItemsType = (NavLink | NavSectionTitle )[]
+export type VerticalNavItemsType = (NavLink | NavSectionTitle)[]
 
 export type LayoutProps = {
   hidden: boolean

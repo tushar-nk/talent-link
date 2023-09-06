@@ -43,12 +43,13 @@ export default function TableHeaderRequest({ isAddButton,data,serachFunction }: 
         style={{
           // background: theme.palette.primary.light,
           borderRadius: '16px',
-          background: 'none',
+          background: theme.palette.primary.light,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           gap: '40rem',
-          padding: '5px'
+          padding: '5px',
+          border:'none'
         }}
  
       >

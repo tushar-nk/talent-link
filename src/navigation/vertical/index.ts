@@ -12,7 +12,6 @@ import PortraitIcon from '@mui/icons-material/Portrait'
 import DescriptionIcon from '@mui/icons-material/Description'
 import LaunchIcon from '@mui/icons-material/Launch'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
-import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
 
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
@@ -30,40 +29,38 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Users',
       icon: PeopleOutlineIcon,
-      path: '/pages/users',
+      path: '/pages/users'
     },
     {
       title: 'Role',
       icon: CoPresentIcon,
-      path: '/pages/roles',
+      path: '/pages/roles'
     },
-   
+
     {
       sectionTitle: 'Hiring'
     },
     {
       title: 'Company',
       icon: BusinessIcon,
-      path: '/pages/company',
+      path: '/pages/company'
     },
     {
       title: 'Profiles',
       icon: PortraitIcon,
-      path: '/pages/profiles',
-    
+      path: '/pages/profiles'
     },
     {
       title: 'Resumes',
       icon: DescriptionIcon,
-      path: '/pages/resumes',
+      path: '/pages/resumes'
     },
     {
       title: 'Hire Request',
       icon: LaunchIcon,
-      path: '/pages/hire-request',
-     
+      path: '/pages/hire-request'
     },
-   
+
     {
       sectionTitle: 'Masters'
     },
@@ -75,7 +72,7 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Sub Category',
       icon: GoogleCirclesExtended,
-      path: '/pages/sub-category',      
+      path: '/pages/sub-category'
     },
     {
       title: 'Skills',
@@ -87,7 +84,7 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       title: 'Support Subject',
-      icon: BrowserUpdatedIcon,
+      icon: CubeOutline,
       path: '/pages/support-subject'
     },
     {

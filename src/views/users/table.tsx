@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from 'src/@core/table/Table';
+import IconService from 'src/@core/utils/Icons';
 import Image from "next/image";
 import TableHeader from './TableHeaders';
 import TableHeaderUser from './TableHeaders';
@@ -30,47 +31,192 @@ const UsersTable = () => {
       mobile_no: "0987654356789",
       actions: "blue"
     },
+    {
+      id: 3,
+     firstname: "Chirag",
+     lastname: "Mehta",
+     profile_picture: "profile",
+     username: "cmehta",
+     desigination: "Business",
+     email:"cmheta@gmail.com",
+     mobile_no: "0987654356789",
+     actions: "blue"
+    },
+    {
+      id: 4,
+      firstname: "Pinal",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+    {
+      id: 5,
+     firstname: "Chirag",
+     lastname: "Mehta",
+     profile_picture: "profile",
+     username: "cmehta",
+     desigination: "Business",
+     email:"cmheta@gmail.com",
+     mobile_no: "0987654356789",
+     actions: "blue"
+    },
+    {
+      id: 6,
+      firstname: "Pinal",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+    {
+      id: 7,
+     firstname: "Chirag",
+     lastname: "Mehta",
+     profile_picture: "profile",
+     username: "cmehta",
+     desigination: "Business",
+     email:"cmheta@gmail.com",
+     mobile_no: "0987654356789",
+     actions: "blue"
+    },
+    {
+      id: 8,
+      firstname: "Pinal",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+    {
+      id: 9,
+     firstname: "Chirag",
+     lastname: "Mehta",
+     profile_picture: "profile",
+     username: "cmehta",
+     desigination: "Business",
+     email:"cmheta@gmail.com",
+     mobile_no: "0987654356789",
+     actions: "blue"
+    },
+    {
+      id: 10,
+      firstname: "Pinal",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+    {
+      id: 11,
+     firstname: "Cane",
+     lastname: "Mehta",
+     profile_picture: "profile",
+     username: "cmehta",
+     desigination: "Business",
+     email:"cmheta@gmail.com",
+     mobile_no: "0987654356789",
+     actions: "blue"
+    },
+    {
+      id: 12,
+      firstname: "Jason",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+    {
+      id: 13,
+      firstname: "Akash",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+    {
+      id: 14,
+      firstname: "Rohan",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+    {
+      id: 15,
+      firstname: "Aditya",
+      lastname: "Patel",
+      profile_picture: "profile",
+      username: "ppatel",
+      desigination: "Project Manager",
+      email:"ppatel@gmail.com",
+      mobile_no: "0987654356789",
+      actions: "blue"
+    },
+
+    
   ];
   const columns = [
     {
       Header: "FirstName",
       accessor: "firstname",
-      sort: true,
+     
     },
     {
       Header: " LastName",
       accessor: "lastname",
-      sort: true,
+     
     },
     {
       Header: "Profile",
       accessor: "profile_picture",
-      sort: true,
+     
     },
     {
       Header: " UserName",
       accessor: "username",
-      sort: true,
+  
     },
     {
       Header: "Desigination",
       accessor: "desigination",
-      sort: true,
+    
     },
     {
       Header: " E-mail",
       accessor: "email",
-      sort: true,
+    
     },
     {
       Header: "Mobile no.",
       accessor: "mobile_no",
-      sort: true,
+   
     },
      {
       Header: "Actions",
       accessor: "actions",
-      sort: true,
+     
       Cell:({})=>{
         return(
           <div>
@@ -91,7 +237,7 @@ const UsersTable = () => {
           serachFunction={(e: number) => (e)}
         />
         </div>
-          <Table columns={columns} data={userData} pagination={false} />
+          <Table columns={columns} data={userData}  />
     </div>
   )
 }

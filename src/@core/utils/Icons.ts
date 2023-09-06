@@ -3,6 +3,7 @@ import groups from "../assets/svg/icons/groups.svg";
 import Ellipse from "../assets/svg/icons/ellipse.svg";
 import RedDot from "../assets/svg/icons/red_dot.svg";
 import SearchIcon from "../assets/svg/icons/Search.svg";
+import SortIcon from "../assets/svg/icons/sort.svg"
 
 
 const IconService = {
@@ -11,6 +12,7 @@ const IconService = {
     Ellipse,
     RedDot,
     SearchIcon,
+    SortIcon,
 }
 
 export default IconService;

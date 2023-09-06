@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import { Modal, Box, Typography, TextField, Button, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { useState } from 'react'
+import { Modal, Box, Typography, TextField, Button, IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
 
 interface ForgotPasswordProps {
-  open: boolean;
-  onClose: () => void;
+  open: boolean
+  onClose: () => void
 }
 
 const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('')
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
+    setEmail(event.target.value)
+  }
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    onClose();
-  };
+    event.preventDefault()
+<<<<<<< HEAD
+=======
+
+>>>>>>> d15813c4d190670c666d5b584516aaa45d22c927
+    onClose()
+  }
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -30,42 +34,42 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
           width: 400,
           bgcolor: 'background.paper',
           boxShadow: 24,
-          p: 6,
+          p: 4,
+          borderRadius: 4
         }}
       >
         <IconButton
           sx={{
             position: 'absolute',
-            top: 3,
-            right: 3,
-            p: 3
+            top: 0,
+            right: 3
           }}
           onClick={onClose}
         >
           <CloseIcon />
         </IconButton>
-        <Typography variant="h5" sx={{ marginBottom: 2 }}>
+        <Typography variant='h5' sx={{ marginBottom: 2 }}>
           Forgot Password
         </Typography>
-        <Typography  sx={{ marginBottom: 2, fontSize: 18 }}>
+        <Typography variant='h6' sx={{ marginBottom: 2 }}>
           Enter your registered email below to receive password reset instructions.
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
             fullWidth
-            label="Email"
-            variant="outlined"
+            label='Email'
+            variant='outlined'
             value={email}
             onChange={handleEmailChange}
             sx={{ marginTop: 4 }}
           />
-          <Button sx={{ marginTop: 5 }} fullWidth variant="contained" color="primary" type="submit">
+          <Button sx={{ marginTop: 5 }} fullWidth variant='contained' color='primary' type='submit'>
             Send Reset Email
           </Button>
         </form>
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
-export default ForgotPassword;
+export default ForgotPassword

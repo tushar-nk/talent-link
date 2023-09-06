@@ -1,46 +1,50 @@
-import React from 'react'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
-import { Bar } from 'react-chartjs-2'
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
-
-export const options = {
-  indexAxis: 'y' as const,
-  elements: {
-    bar: {
-      borderWidth: 2
-    }
-  },
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'right' as const
-    },
-    title: {
-      display: true,
-      text: 'Top Companies'
-    }
-  }
-}
-
-const labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-
-const data = {
-  labels: ['Mon', 'Tue', 'Wed', 'Thu'],
-  datasets: [
-    {
-      data: [5, 10, 20, 30],
-      backgroundColor: 'green'
-    },
-    {
-      data: [7, 15, 25, 35],
-      backgroundColor: 'blue'
-    }
-  ]
-}
+import React, { useState } from 'react'
+import Typography from '@mui/material/Typography'
+import ReactApexChart from 'react-apexcharts'
 
 const TopCompanies = () => {
-  return <Bar options={options} data={data} />
+  const [options, setOptions] = useState({
+    chart: {
+      // type:"bar",
+      id: 'apexchart-example'
+    },
+    xaxis: {
+      categories: [2001, 2002, 2003, 2004, 2005,]
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        dataLabels: {
+          position: 'top'
+        }
+      }
+    },
+    fill:{
+      colors:["#00A88F","#323B81"]
+    }
+  })
+  const [series, setSeries] = useState([
+    {
+      name: 'group-1',
+      data: [44, 55, 41, 64, 22, 43, 21]
+    },
+    {
+      name: 'group-2',
+      data: [53, 32, 33, 52, 13, 44, 32]
+    }
+  ])
+  return (
+    <>
+    <Typography className='graphs-title'>Top Company</Typography>
+    
+      <ReactApexChart options={options} series={series} type='bar' />
+    </>
+  )
 }
 
 export default TopCompanies
+
+// {(typeof window !== 'undefined') &&
+    
+//       <ReactApexChart options={options} series={series} type='bar' />
+//   }

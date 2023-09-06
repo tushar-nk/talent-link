@@ -10,6 +10,7 @@ import {
 
 import React, { useContext } from "react";
 import Image from "next/image";
+import IconService from 'src/@core/utils/Icons';
 import { useRouter } from "next/router";
 
 import TableHeaderSearch from "src/@core/table/TableHeaderSearch";
@@ -43,17 +44,18 @@ export default function TableHeaderSkills({ isAddButton,data,serachFunction }: T
         style={{
           // background: theme.palette.primary.light,
           borderRadius: '16px',
-          background: 'none',
+          background: theme.palette.primary.light,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           gap: '40rem',
-          padding: '5px'
+          padding: '5px',
+          border:"none",
         }}
  
       >
               <TableHeaderSearch serachFunction={(e)=>serachFunction(e)} />
-              <Button onClick={handleButtonClick}  variant="contained" href="#contained-buttons">ADD</Button>
+              <Button onClick={handleButtonClick}  variant="contained" >ADD</Button>
  
       </Card>
     </>

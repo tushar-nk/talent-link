@@ -126,8 +126,8 @@ const FormLayoutsSeparator = () => {
                 </Select>
               </FormControl>
               <Grid item xs={12} sm={12}>
-              <TextField fullWidth label='Mobile no' placeholder='9999999999' />
-            </Grid>
+                <TextField fullWidth label='Mobile no' placeholder='9999999999' />
+              </Grid>
             </Grid>
             <Grid item xs={12} sm={12}>
               <FormControl fullWidth>

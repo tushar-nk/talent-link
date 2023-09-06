@@ -1,15 +1,15 @@
 import { Grid } from '@mui/material'
 import React from 'react'
-import Certification from 'src/views/hire/Certification'
-import CompanyDetails from 'src/views/hire/CompanyDetails'
-import Education from 'src/views/hire/Education'
-import EmployeeHistory from 'src/views/hire/EmployeeHistory'
-import EmployeeProfile from 'src/views/hire/EmployeeProfile'
-import HireDetails from 'src/views/hire/HireDetails'
-import ProjectBrief from 'src/views/hire/ProjectBrief'
-import Rating from 'src/views/hire/Rating'
-import SimilarProfile from 'src/views/hire/SimilarProfile'
-import TechnicalSkill from 'src/views/hire/TechnicalSkill'
+import Certification from 'src/views/hire-request/hire/Certification'
+import CompanyDetails from 'src/views/hire-request/hire/CompanyDetails'
+import Education from 'src/views/hire-request/hire/Education'
+import EmployeeHistory from 'src/views/hire-request/hire/EmployeeHistory'
+import EmployeeProfile from 'src/views/hire-request/hire/EmployeeProfile'
+import HireDetails from 'src/views/hire-request/hire/HireDetails'
+import ProjectBrief from 'src/views/hire-request/hire/ProjectBrief'
+import Rating from 'src/views/hire-request/hire/Rating'
+import SimilarProfile from 'src/views/hire-request/hire/SimilarProfile'
+import TechnicalSkill from 'src/views/hire-request/hire/TechnicalSkill'
 
 const index = () => {
   return (
@@ -40,7 +40,7 @@ const index = () => {
             </Grid>
           </Grid>
         </div>
-        <SimilarProfile/>
+        <SimilarProfile />
       </div>
     </>
   )

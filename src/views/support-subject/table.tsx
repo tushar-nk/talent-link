@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Table from 'src/@core/table/Table';
 import IconService from 'src/@core/utils/Icons';
 import Image from "next/image";
@@ -9,7 +9,7 @@ import TableHeaderSubject from './TableHeaders';
 
 
 const SupportSubjectTable = () => {
-  const [userData, setUserData]: any = useState ([
+  const userData: any = [
     {
       id: 1,
      skills: "User Management",
@@ -23,35 +23,27 @@ const SupportSubjectTable = () => {
       skills: "Hire Management",
     },
   
-  ]);
-
-  
-  const handleDeleteClick = (id:any )=> {
-    // Filter out the item with the specified id from userData
-    const updatedUserData = userData.filter((item:any) => item.id !== id);
-    setUserData(updatedUserData);
-  };
+  ];
   const columns = [
     {
       Header: " Skills",
       accessor: "skills",
-      sort: true,
-      Cell: ({ value }: any) => (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{value}</div>
-      )
+     
+      // Cell: ({ value }: any) => (
+      //   <div style={{ display: 'flex', alignItems: 'center'  }}>{value}</div>
+      // )
     },
     {
       Header: "Actions",
       accessor: "actions",
-      sort: true,
+     
       Cell: ({ value, row }: any) => {
         return (
-          <div style={{ display: 'flex', alignItems: 'center',justifyContent: 'center'  }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent:'center'}}>
             <Image
               src={IconService.DeleteRedRounded}
               alt=""
               className="cursor-pointer"
-              onClick={() => handleDeleteClick(row.original.id)}
             />
 
 <div
@@ -82,7 +74,7 @@ const SupportSubjectTable = () => {
           serachFunction={(e: number) => (e)}
         />
         </div>
-          <Table columns={columns} data={userData} pagination={false} />
+          <Table columns={columns} data={userData}/>
     </div>
   )
 }

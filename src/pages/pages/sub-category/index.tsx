@@ -1,12 +1,12 @@
 import React from 'react'
-import SubCategoryTable from 'src/views/sub-category/table';
+import SubCategoryTable from 'src/views/sub-category/table'
 
 const SubCategory = () => {
   return (
-  <>
-  <SubCategoryTable/>
-  </>
+    <>
+      <SubCategoryTable />
+    </>
   )
 }
 
-export default SubCategory;
+export default SubCategory

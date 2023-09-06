@@ -1,28 +1,16 @@
-import React,{useState} from 'react'
-import {
-    FormControl,
-    Grid,
-    Select,
-    FormLabel,
-    MenuItem,
-    Box,
-    Card,
-    CardContent,
-    TextField,
-    Button,
-    Checkbox,
-    FormControlLabel,
-    RadioGroup,
-    Radio,
-    Typography
-  } from '@mui/material'
-  import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import React, { useState } from 'react'
+import { Card, CardContent, Button, Typography } from '@mui/material'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 const Profiles = () => {
-    const [isIconClicked, setIsIconClicked] = useState(false)
+  const [isIconClicked, setIsIconClicked] = useState(Array(6).fill(false))
 
-  const handleIconClick = () => {
-    setIsIconClicked(prevState => !prevState)
+  const handleIconClick = index => {
+    setIsIconClicked(prevState => {
+      const newState = [...prevState] // Create a copy of the state array
+      newState[index] = !newState[index] // Toggle the clicked card's state
+      return newState
+    })
   }
 
   const profilesData = [
@@ -31,136 +19,125 @@ const Profiles = () => {
       title: 'Solution Architect',
       company: 'Net For Nuts',
       location: 'Ahmedabad, Gujarat',
-      availability: 'Available after 3 months',
-      imageSrc: '/images/avatars/1.png',
+      availability: '*****(Available after 3 months)',
+      imageSrc: '/images/avatars/1.png'
     },
     {
-        jobType: 'Full Time',
-        title: 'Solution Architect',
-        company: 'Net For Nuts',
-        location: 'Ahmedabad, Gujarat',
-        availability: 'Available after 3 months',
-        imageSrc: '/images/avatars/1.png',
-      },
-      {
-        jobType: 'Full Time',
-        title: 'Solution Architect',
-        company: 'Net For Nuts',
-        location: 'Ahmedabad, Gujarat',
-        availability: 'Available after 3 months',
-        imageSrc: '/images/avatars/1.png',
-      },
-      {
-        jobType: 'Full Time',
-        title: 'Solution Architect',
-        company: 'Net For Nuts',
-        location: 'Ahmedabad, Gujarat',
-        availability: 'Available after 3 months',
-        imageSrc: '/images/avatars/1.png',
-      },
-      {
-        jobType: 'Full Time',
-        title: 'Solution Architect',
-        company: 'Net For Nuts',
-        location: 'Ahmedabad, Gujarat',
-        availability: 'Available after 3 months',
-        imageSrc: '/images/avatars/1.png',
-      },
-      {
-        jobType: 'Full Time',
-        title: 'Solution Architect',
-        company: 'Net For Nuts',
-        location: 'Ahmedabad, Gujarat',
-        availability: 'Available after 3 months',
-        imageSrc: '/images/avatars/1.png',
-      },
-      
-    
- 
-  ];
-  const firstRowProfiles = profilesData.slice(0, 3);
-  const secondRowProfiles = profilesData.slice(3, 6);
+      jobType: 'Full Time',
+      title: 'Solution Architect',
+      company: 'Net For Nuts',
+      location: 'Ahmedabad, Gujarat',
+      availability: 'Available after 3 months',
+      imageSrc: '/images/avatars/1.png'
+    },
+    {
+      jobType: 'Full Time',
+      title: 'Solution Architect',
+      company: 'Net For Nuts',
+      location: 'Ahmedabad, Gujarat',
+      availability: 'Available after 3 months',
+      imageSrc: '/images/avatars/1.png'
+    },
+    {
+      jobType: 'Full Time',
+      title: 'Solution Architect',
+      company: 'Net For Nuts',
+      location: 'Ahmedabad, Gujarat',
+      availability: 'Available after 3 months',
+      imageSrc: '/images/avatars/1.png'
+    },
+    {
+      jobType: 'Full Time',
+      title: 'Solution Architect',
+      company: 'Net For Nuts',
+      location: 'Ahmedabad, Gujarat',
+      availability: 'Available after 3 months',
+      imageSrc: '/images/avatars/1.png'
+    },
+    {
+      jobType: 'Full Time',
+      title: 'Solution Architect',
+      company: 'Net For Nuts',
+      location: 'Ahmedabad, Gujarat',
+      availability: 'Available after 3 months',
+      imageSrc: '/images/avatars/1.png'
+    }
+  ]
+  const firstRowProfiles = profilesData.slice(0, 3)
+  const secondRowProfiles = profilesData.slice(3, 6)
 
   return (
-   <>
-   <div>
-      <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.2rem', marginBottom: 4 }}>
-        500 Profiles
-      </Typography>
+    <>
+      <div>
+        <Typography variant='h6' sx={{ fontWeight: 'bold', fontSize: '1.2rem', marginBottom: 4 }}>
+          500 Profiles
+        </Typography>
 
-      {/* First Row of Cards */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-        {firstRowProfiles.map((profile, index) => (
-          <Card
-            key={index}
-            style={{ flex: '1', marginRight: '20px' }}
-          >
-            <CardContent>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography>{profile.jobType}</Typography>
-                <FavoriteBorderIcon
-                  onClick={handleIconClick}
-                  color={isIconClicked ? 'error' : 'inherit'} // Change color based on state
-                  sx={{ cursor: 'pointer' }}
-                />
-              </div>
+        {/* First Row of Cards */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+          {firstRowProfiles.map((profile, index) => (
+            <Card key={index} style={{ flex: '1', marginRight: '20px' }}>
+              <CardContent style={{width: '100%'}}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Typography>{profile.jobType}</Typography>
+                  <FavoriteBorderIcon
+                    onClick={() => handleIconClick(index)} // Pass the index of the clicked card
+                    color={isIconClicked[index] ? 'error' : 'inherit'} // Use the corresponding state value
+                    sx={{ cursor: 'pointer' }}
+                  />
+                </div>
 
-              <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-                <img src={profile.imageSrc} alt="" style={{ width: '50%' }} />
+                <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+                  <img src={profile.imageSrc} alt='' style={{ width: '50%' }} />
 
-                <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.2rem', marginBottom: 1 }}>
-                  {profile.title}
-                </Typography>
-                <Typography>{profile.company}</Typography>
-                <Typography sx={{ fontSize: 'small' }}>{profile.location}</Typography>
-                <Typography sx={{ color: 'red' }}>{profile.availability}</Typography>
+                  <Typography>
+                    {profile.title}
+                  </Typography>
+                  <Typography>{profile.company}</Typography>
+                  <Typography sx={{ fontSize: 'small' }}>{profile.location}</Typography>
+                  <Typography sx={{ color: 'red', fontSize: 'small' }}>{profile.availability}</Typography>
 
-                <Button variant="contained" color="primary" sx={{ marginTop: '10px' }}>
-                  Hire
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+                  <Button variant='contained' color='primary' sx={{ marginTop: '10px' }}>
+                    Hire
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Second Row of Cards */}
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          {secondRowProfiles.map((profile, index) => (
+            <Card key={index} style={{ flex: '1', marginRight: '20px' }}>
+              <CardContent>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Typography>{profile.jobType}</Typography>
+                  <FavoriteBorderIcon
+                    onClick={() => handleIconClick(index)} 
+                    color={isIconClicked[index] ? 'error' : 'inherit'} 
+                    sx={{ cursor: 'pointer' }}
+                  />
+                </div>
+
+                <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+                  <img src={profile.imageSrc} alt='' style={{ width: '50%' }} />
+
+                  <Typography>{profile.title}</Typography>
+                  <Typography>{profile.company}</Typography>
+                  <Typography sx={{ fontSize: 'small' }}>{profile.location}</Typography>
+                  <Typography sx={{ color: 'red' }}>{profile.availability}</Typography>
+
+                  <Button variant='contained' color='primary' sx={{ marginTop: '10px' }}>
+                    Hire
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
-
-      {/* Second Row of Cards */}
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {secondRowProfiles.map((profile, index) => (
-          <Card
-            key={index}
-            style={{ flex: '1', marginRight: '20px' }}
-          >
-            <CardContent>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography>{profile.jobType}</Typography>
-                <FavoriteBorderIcon
-                  onClick={handleIconClick}
-                  color={isIconClicked ? 'error' : 'inherit'} // Change color based on state
-                  sx={{ cursor: 'pointer' }}
-                />
-              </div>
-
-              <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-                <img src={profile.imageSrc} alt="" style={{ width: '50%' }} />
-
-                <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.2rem', marginBottom: 1 }}>
-                  {profile.title}
-                </Typography>
-                <Typography>{profile.company}</Typography>
-                <Typography sx={{ fontSize: 'small' }}>{profile.location}</Typography>
-                <Typography sx={{ color: 'red' }}>{profile.availability}</Typography>
-
-                <Button variant="contained" color="primary" sx={{ marginTop: '10px' }}>
-                  Hire
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
-  </> 
+    </>
   )
 }
 

@@ -10,12 +10,8 @@ import {
   CardActions,
   Button
 } from '@mui/material'
-import { useRouter } from 'next/router'
 
-export default function SkillsDetails() {
-  const router = useRouter()
-  const { skills } = router.query
-
+export default function index() {
   return (
     <Card>
       <Grid sx={{ ml: 20, mt: 10, mr: 20, mb: 10 }}>

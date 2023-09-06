@@ -1,12 +1,12 @@
 import React from 'react'
-import HireRequestTable from 'src/views/hire-request/table';
+import HireRequestTable from 'src/views/hire-request/table'
 
 const HireRequest = () => {
   return (
-   <>
-   <HireRequestTable/>
-   </>
+    <>
+      <HireRequestTable />
+    </>
   )
 }
 
-export default HireRequest;
+export default HireRequest

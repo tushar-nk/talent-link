@@ -1,10 +1,8 @@
 import React from 'react'
-import ResumeManageTable from 'src/views/resumes/table';
+import ResumeManageTable from 'src/views/resumes/table'
 
 const Resumes = () => {
-  return (
-    <ResumeManageTable/>
-  )
+  return <ResumeManageTable />
 }
 
-export default Resumes;
+export default Resumes

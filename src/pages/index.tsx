@@ -70,7 +70,7 @@ const LoginPage = () => {
   // ** Hook
   const theme = useTheme()
   const router = useRouter()
-  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false)
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
@@ -171,7 +171,7 @@ const LoginPage = () => {
             initialValues={{ email: '', password: '' }}
             validationSchema={validationSchema}
             onSubmit={() => {
-              router.push('/pages/dashboard');
+              router.push('/pages/dashboard')
             }}
           >
             {({ handleSubmit }) => (

@@ -11,8 +11,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import { Button, CardActions, Chip, Stack, Typography } from '@mui/material'
 
 // ** icons
@@ -36,7 +36,6 @@ export default function ResumeDetails() {
   const [availability, setAvailability] = useState<string[]>([])
   const [date, setDate] = useState<Date | null | undefined>(null)
 
-  // Handle Select
   const handleSelectCompany = (event: SelectChangeEvent<string[]>) => {
     setCompany(event.target.value as string[])
   }
@@ -113,7 +112,7 @@ export default function ResumeDetails() {
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={3} sx={{ ml: 2 }}>
-            <DatePicker
+              <DatePicker
                 selected={date}
                 showYearDropdown
                 showMonthDropdown
@@ -121,7 +120,6 @@ export default function ResumeDetails() {
                 customInput={<CustomInput />}
                 id='form-layouts-separator-date'
                 onChange={(date: Date) => setDate(date)}
-                className='custom-datepicker'
               />
             </Grid>
             <Grid item xs={12} sm={8} sx={{ ml: 2 }}>

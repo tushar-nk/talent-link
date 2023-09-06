@@ -9,6 +9,9 @@ import {
 } from "@mui/material";
 
 import React, { useContext } from "react";
+import Image from "next/image";
+import IconService from 'src/@core/utils/Icons';
+
 import TableHeaderSearch from "src/@core/table/TableHeaderSearch";
 import { useRouter } from "next/router";
 
@@ -41,12 +44,13 @@ export default function TableHeaderResume({ isAddButton,data,serachFunction }: T
         style={{
           // background: theme.palette.primary.light,
           borderRadius: '16px',
-          background: 'none',
+          background: theme.palette.primary.light,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           gap: '40rem',
-          padding: '5px'
+          padding: '5px',
+          border:'none',
         }}
  
       >
@@ -58,7 +62,7 @@ export default function TableHeaderResume({ isAddButton,data,serachFunction }: T
      
       // display: 'flex', 
       // alignItems: 'center',
-    }}  onClick={handleButtonClick} variant="contained" href="#contained-buttons">Add Resume</Button>
+    }}  onClick={handleButtonClick} variant="contained" >Add Resume</Button>
  
       </Card>
     </>

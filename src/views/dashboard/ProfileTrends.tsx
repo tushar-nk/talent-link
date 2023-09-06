@@ -1,54 +1,42 @@
 import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js'
-import React from 'react'
+import React, { useState } from 'react'
+import Typography from '@mui/material/Typography'
+import ReactApexChart from 'react-apexcharts'
 
 import { Bar } from 'react-chartjs-2'
 
-Chart.register(CategoryScale, LinearScale, BarElement)
-const labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-const data = {
-  labels: labels,
-  datasets: [
-    {
-      label: 'dataset',
-
-      data: [65, 59, 83, 89, 76, 55, 40, 15, 80],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 205, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)',
-        'rgba(255, 205, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-      ],
-      borderColor: [
-        'rgb(255, 99, 132)',
-        'rgb(255, 159, 64)',
-        'rgb(255, 205, 86)',
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)',
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-      ],
-      borderWidth: 1
-    }
-  ]
-}
 const ProfileTrends = () => {
+  const [options, setOptions] = useState({
+    chart: {
+      id: 'apexchart-example',
+      height: 350
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: '40%',
+        // endingShape: 'rounded'
+      }
+    },
+    xaxis: {
+      categories: [2001, 2002, 2003, 2004, 2005]
+    },
+    fill:{
+      colors:["#00A88F"]
+    }
+  })
+  const [series, setSeries] = useState([
+    {
+      name: 'group-1',
+      data: [65, 59, 83, 89, 76],
+      backgroundColor: '#eab676'
+    }
+  ])
   return (
     <>
-      <div className='main'>
-        <h1 className='profile-head'>Profile Trends</h1>
-        <Bar
-          data={data}
-          options={{
-            maintainAspectRatio: false
-          }}
-        />
+      <div>
+        <Typography className='chart-title'>Profile Trends</Typography>
+        <ReactApexChart className="column-graph" options={options} series={series} type='bar' />
       </div>
     </>
   )

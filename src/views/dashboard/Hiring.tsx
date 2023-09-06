@@ -1,24 +1,32 @@
 import React from 'react'
+import Typography from '@mui/material/Typography'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import Chart from 'chart.js/auto'
 import { Pie } from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-export const data = {
-  labels: ['Red', 'Blue', 'Yellow'],
+const data = {
+  labels: ['A', 'B', 'C', 'D'],
   datasets: [
     {
-      label: '# of Votes',
-      data: [12, 19, 20],
-      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
-      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
-      borderWidth: 1
+      label: 'My First Dataset',
+      data: [149, 70, 50, 100],
+      backgroundColor: ['#323B81', '#005FAA', '#00A88F', '#82C272'],
+      hoverOffset: 4
     }
   ]
 }
 
 const Hiring = () => {
-  return <Pie data={data} className='pie-chart' />
+  return (
+    <>
+      <div>
+        <Typography className='graphs-title'> Hiring Statistics</Typography>
+        <Pie data={data} className='pie-chart' />
+      </div>
+    </>
+  )
 }
 
 export default Hiring

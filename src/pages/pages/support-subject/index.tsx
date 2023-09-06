@@ -3,9 +3,9 @@ import SupportSubjectTable from 'src/views/support-subject/table'
 
 const index = () => {
   return (
-   <>
-     <SupportSubjectTable/>
-   </>
+    <>
+      <SupportSubjectTable />
+    </>
   )
 }
 
