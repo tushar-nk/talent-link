@@ -67,12 +67,8 @@
     "react-apexcharts": "^1.4.1",
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.16.0",
-<<<<<<< HEAD
     "react-dom": "17.0.2",
     "react-draft-wysiwyg": "^1.15.0",
-=======
-    "react-dom": "^17.0.2",
->>>>>>> d15813c4d190670c666d5b584516aaa45d22c927
     "react-perfect-scrollbar": "^1.5.8",
     "react-popper": "^2.2.5",
     "react-quill": "^2.0.0",
