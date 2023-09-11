@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControl, Grid, Select, MenuItem } from '@mui/material'
-import Profiles from 'src/views/profile/profiles'
-import ProfileFilter from 'src/views/profile/profilefilter'
+import Profiles from 'src/views/profiles/profiles'
+import ProfileFilter from 'src/views/profiles/profilefilter'
 
 const Profile = () => {
   return (
