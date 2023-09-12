@@ -1,32 +1,25 @@
 import React from 'react'
 import SubRequestTable from 'src/views/support-request/table'
-import { Grid } from '@mui/material'
+
 
 import CardStatisticsVerticalComponent from 'src/@core/components/card-statistics/card-stats-vertical'
+import TableHeaderRequest from 'src/views/support-request/TableHeaders'
 
 const SupportRequest = () => {
   return (
     <>
-      <div style={{ marginBottom: '20px' }}>
-        <Grid container spacing={2} columns={30}>
-          <Grid item xs={2} sm={4} lg={6}>
-            <CardStatisticsVerticalComponent stats='25' title='Open' />
-          </Grid>
-          <Grid item xs={2} sm={4} lg={6}>
-            <CardStatisticsVerticalComponent stats='78' title='In Progress' />
-          </Grid>
-          <Grid item xs={2} sm={4} lg={6}>
-            <CardStatisticsVerticalComponent stats='862' title='Resolved' />
-          </Grid>
-          <Grid item xs={2} sm={4} lg={6}>
-            <CardStatisticsVerticalComponent stats='15' title='On Hold' />
-          </Grid>
-          <Grid item xs={2} sm={4} lg={6}>
-            <CardStatisticsVerticalComponent stats='15' title='Total Hired' />
-          </Grid>
-        </Grid>
+      <div  className='support-request'>
+        <div className='support-request-category'>
+          <CardStatisticsVerticalComponent className='open-color' stats='25' title='Open' />
+          <CardStatisticsVerticalComponent className='progress-color' stats='78' title='In Progress' />
+          <CardStatisticsVerticalComponent className='resolved-color' stats='862' title='Resolved' />
+          <CardStatisticsVerticalComponent className='hold-color' stats='15' title='On Hold' />
+          <CardStatisticsVerticalComponent className='total-hired-color' stats='15' title='Total Hired' />
+        </div>
       </div>
-
+      <div style={{ marginBottom: '20px' }}>
+        <TableHeaderRequest serachFunction={(e: number) => e} />
+      </div>
       <SubRequestTable />
     </>
   )

@@ -20,10 +20,11 @@ export default function TableHeaderCompany({ isAddButton, data, serachFunction }
   const theme = useTheme()
   const router = useRouter()
 
+
   const handleButtonClick = () => {
     // Navigate to the desired page when the button is clicked
-    router.push('/pages/company/formlayoutsseparator')
-  }
+    router.push('/pages/company/companydetails');
+  };
 
   return (
     <>
@@ -43,7 +44,7 @@ export default function TableHeaderCompany({ isAddButton, data, serachFunction }
         }}
       >
               <TableHeaderSearch serachFunction={(e)=>serachFunction(e)} />
-              <Button  onClick={handleButtonClick} variant="contained" >ADD</Button>
+              <Button onClick={handleButtonClick}  variant="contained" >ADD</Button>
  
       </Card>
     </>

@@ -84,7 +84,7 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       title: 'Support Subject',
-      icon: CubeOutline,
+      icon: Table,
       path: '/pages/support-subject'
     },
     {

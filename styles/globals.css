@@ -9,8 +9,8 @@ body {
 
 code {
   font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
-  /* font-family: 'Roboto'; */
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue'; 
+    /* font-family: 'Roboto'; */
   padding: 0.1rem 0.4rem;
   font-size: 90%;
   color: #d400ff;
@@ -22,7 +22,8 @@ code:not([class*='language-']):after {
 }
 code[class*='language-'] {
   padding: 0;
-}
+} 
+
 
 /*-------------------Common Table container styles------------------------------------- */
 
@@ -30,21 +31,21 @@ code[class*='language-'] {
   white-space: nowrap;
 }
 
-.consultation_card_box {
+.consultation_card_box{
   border-radius: 16px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow-x: auto; 
+  overflow-y: auto; 
 }
 
 .table-container {
   border-radius: 16px;
   background-color: #fff;
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  overflow-x: auto;
-  overflow-y: auto;
-  overflow-y: hidden;
+  overflow-x: auto; 
+  overflow-y: auto; 
+  overflow-y: hidden; 
   /* padding: 20px;  */
 }
 .x-scroll {
@@ -58,10 +59,10 @@ th {
   font-weight: 700;
   line-height: 20px;
   text-align: center;
-  padding: 0px 0px;
+  padding: 0px 0px ;
 }
 td {
-  color: var(--primary-font-1, #474973);
+  color: var(--primary-font-1, #474973 );
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -70,6 +71,7 @@ td {
   text-align: center;
   padding: 0px 0px;
 }
+
 
 table thead tr,
 table tbody tr:not(:last-child) {
@@ -80,26 +82,27 @@ thead {
   height: 56px;
 }
 
+
 table tr th:first-child,
 table tr td:first-child {
   padding-left: 40px;
 }
 
-/* Style for the thumb (handle) of the vertical scrollbar */
 table tr th:last-child,
 table tr td:last-child {
   padding-right: 70px;
 }
-
+/* Style for the thumb (handle) of the vertical scrollbar */
 .table-container::-webkit-scrollbar-thumb {
   background-color: #272323;
-  border-radius: 2px;
+  border-radius: 2px; 
 }
 
 /* Style for the thumb when hovering over it */
 .table-container::-webkit-scrollbar-thumb:hover {
-  background-color: #451414;
+  background-color: #451414; 
 }
+
 
 /* Table borders */
 .table {
@@ -117,29 +120,31 @@ table tr td:last-child {
 /* Table header cell */
 .consultation_table_head_text {
   padding: 8px;
+ 
 }
 
 /* Table body row */
 .consultation_table_body_row {
   border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease; 
 }
 
 /* Table row hover effect */
 .consultation_table_body_row:hover {
-  background-color: #edf2fb;
+  background-color: #edf2fb; 
   /* background-color: #eef0eb;  */
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; 
 }
 
 /* Table body cell */
 .consultation_table_body_text {
   padding: 8px;
+  
 }
 /*--------------------------------------------- common table styles end -------------------------- */
 
-/** ============================== Scrol bar globle css ==================================   */
+/** ============================== Scroll bar globle css ==================================   */
 ::-webkit-scrollbar {
   width: 3px !important;
   height: 2px !important;
@@ -202,20 +207,20 @@ table tr td:last-child {
 .hire-employee {
   padding: 20px;
 }
-.count {
+.count{
   font-size: 30px !important;
 }
-.company-clr {
-  background-color: #b3c99c !important;
+.company-clr{
+  background-color: #B3C99C !important;
 }
-.resume-clr {
-  background-color: #adc4ce !important;
+.resume-clr{
+background-color: #ADC4CE !important;
 }
-.categories-clr {
-  background-color: #84a7a1 !important;
+.categories-clr{
+  background-color: #84A7A1 !important;
 }
-.total-clr {
-  background-color: #dfccfb !important;
+.total-clr{
+  background-color: #DFCCFB !important;
 }
 
 .main {
@@ -253,7 +258,7 @@ table tr td:last-child {
   background-color: white;
   border: 1px solid #ccc; /* Add a border for separation */
 }
-/* width: 12%; */
+  /* width: 12%; */
 .details-field {
   display: block;
 }
@@ -323,10 +328,12 @@ table tr td:last-child {
   padding: 20px;
   height: 200px;
 }
-.education {
+.education{
   padding-top: 30px;
   margin-bottom: 30px;
 }
+
+
 
 /* --------------------------------------------code V css------------------------ */
 .dashboard-table {
@@ -382,3 +389,35 @@ table tr td:last-child {
 .category-status .css-i9ga9f-MuiCardHeader-root {
   padding: 0px !important;
 }
+
+
+/* ---------------------------------------support-request card css-------------------------- */
+.support-request-category{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.support-request{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+.open-color{
+  background-color: #9DB2BF !important;
+}
+.progress-color{
+  background-color: #DDE6ED !important;
+}
+.resolved-color{
+  background-color: #EAB2A0 !important; 
+}
+.hold-color{
+  background-color: #A6BB8D !important;
+}
+.total-hired-color{
+  background-color: #EAE7B1 !important;
+}
+
+
+

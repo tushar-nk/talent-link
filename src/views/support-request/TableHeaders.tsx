@@ -54,7 +54,7 @@ export default function TableHeaderRequest({ isAddButton,data,serachFunction }: 
  
       >
               <TableHeaderSearch serachFunction={(e)=>serachFunction(e)} />
-              <Button onClick={handleButtonClick}  variant="contained" href="#contained-buttons">ADD</Button>
+              <Button onClick={handleButtonClick}  variant="contained">ADD</Button>
  
       </Card>
     </>

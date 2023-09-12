@@ -1,6 +1,10 @@
-import { useState } from 'react'
+// ** React Imports
+import { useState , forwardRef } from 'react'
+
+// ** MUI Imports
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
+
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel'
@@ -14,12 +18,17 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 export default function SupportRequestDetails() {
+  // ** States
   const [language, setLanguage] = useState<string[]>([])
   const [date, setDate] = useState<Date | null | undefined>(null)
 
+  // Handle Select
   const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
     setLanguage(event.target.value as string[])
   }
+  const CustomInput = forwardRef((props, ref) => {
+    return <TextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
+  })
 
   return (
     <Card>
@@ -27,11 +36,12 @@ export default function SupportRequestDetails() {
         <CardContent className='request-layout'>
           <Grid container spacing={5}>
             <Grid item xs={12} sm={3}>
-              <DatePicker
+            <DatePicker
                 selected={date}
                 showYearDropdown
                 showMonthDropdown
                 placeholderText='MM-DD-YYYY'
+                customInput={<CustomInput />}
                 id='form-layouts-separator-date'
                 onChange={(date: Date) => setDate(date)}
                 className='custom-datepicker'

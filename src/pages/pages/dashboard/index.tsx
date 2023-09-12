@@ -3,14 +3,9 @@ import React from 'react'
 
 // ** Custom Components Imports
 import CardStatsVertical from 'src/@core/components/card-statistics/card-stats-vertical/index'
-
-// ** Styled Component Import
-
-// ** Demo Components Imports
-import Table from 'src/views/dashboard/Table'
-
-import { Card } from '@mui/material'
+import { Card, Typography, Grid } from '@mui/material'
 import dynamic from 'next/dynamic'
+import SubRequestTable from 'src/views/support-request/table'
 
 const TopCompany = dynamic(() => import('../../../views/dashboard/TopCompanies'), { ssr: false })
 const Hiring = dynamic(() => import('../../../views/dashboard/Hiring'), { ssr: false })
@@ -45,9 +40,27 @@ const Dashboard = () => {
           <HiringEmployee />
         </Card>
       </div>
-      <div>
-        <Table />
+      <div className='dashboard-table'>
+        <Typography variant='h5' sx={{ mb: 5 }}>
+          Hiring Request
+        </Typography>
+        <SubRequestTable />
       </div>
+
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid item xs={6}>
+        <Typography variant='h5' sx={{ mt: 10, mb: 5 }}>
+          Latest Profiles
+        </Typography>
+          <SubRequestTable />
+        </Grid>
+        <Grid item xs={6}>
+        <Typography variant='h5' sx={{ mt: 10, mb: 5 }}>
+          Support Request
+        </Typography>
+          <SubRequestTable />
+        </Grid>
+      </Grid>
     </div>
   )
 }

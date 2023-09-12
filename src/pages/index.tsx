@@ -89,7 +89,7 @@ const LoginPage = () => {
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
-          <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Box  sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }} className='login-box'>
             <svg
               width={35}
               height={29}
@@ -152,7 +152,7 @@ const LoginPage = () => {
             <Typography
               variant='h6'
               sx={{
-                ml: 3,
+                marginLeft: 3,
                 lineHeight: 1,
                 fontWeight: 600,
                 textTransform: 'uppercase',
@@ -162,13 +162,13 @@ const LoginPage = () => {
               {themeConfig.templateName}
             </Typography>
           </Box>
-          <Box sx={{ mb: 4 }}>
+          <Box sx={{ marginBottom: 4 }}>
             <Typography variant='h6' sx={{ fontWeight: 500, marginBottom: 1.0 }}>
               Welcome to {themeConfig.templateName}!
             </Typography>
           </Box>
           <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ email: 'admin@talentlink.com', password: 'Test@123' }}
             validationSchema={validationSchema}
             onSubmit={() => {
               router.push('/pages/dashboard')
@@ -184,7 +184,7 @@ const LoginPage = () => {
                   </InputLabel>
                   <Field
                     name='password'
-                    sx={{ mt: 4 }}
+                    sx={{ marginTop: 4 }}
                     as={OutlinedInput}
                     label='Password'
                     type={values.showPassword ? 'text' : 'password'}
@@ -205,7 +205,7 @@ const LoginPage = () => {
                 </FormControl>
                 <Box
                   sx={{
-                    mb: 4,
+                    marginBottom: 4,
                     display: 'flex',
                     alignItems: 'center',
                     flexWrap: 'wrap',
@@ -226,8 +226,6 @@ const LoginPage = () => {
         </CardContent>
       </Card>
       <ForgotPassword open={isForgotPasswordModalOpen} onClose={() => setIsForgotPasswordModalOpen(false)} />
-
-      {/* <FooterIllustrationsV1 /> */}
     </Box>
   )
 }
