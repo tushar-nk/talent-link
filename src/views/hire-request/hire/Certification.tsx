@@ -5,7 +5,7 @@ const Certification = () => {
   return (
     <>
       <Card className='certification'>
-        <Typography variant='h5'>Certification</Typography>
+        <Typography className='hire-request-titles'>Certification</Typography>
       </Card>
     </>
   )

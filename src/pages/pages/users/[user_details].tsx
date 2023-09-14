@@ -4,7 +4,6 @@ import { ChangeEvent, ElementType, useState } from 'react'
 // ** MUI Imports
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel'
@@ -42,7 +41,6 @@ const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
 }))
 
 const FormLayoutsSeparator = () => {
-  // ** States
   const [imgSrc, setImgSrc] = useState<string>('/images/avatars/1.png')
   const [language, setLanguage] = useState<string[]>([])
 
@@ -62,11 +60,11 @@ const FormLayoutsSeparator = () => {
   }
 
   return (
-    <Card>
-      <Grid item xs={12} className='form-layout'>
-        <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+    <Card className='form-layout'>
+      <Grid item xs={12} className='image-align'>
+        <Grid sx={{ display: 'flex' }}>
           <ImgStyled src={imgSrc} alt='Profile Pic' />
-          <Grid sx={{ mt: 10 }}>
+          <Grid sx={{ marginTop: 6 }}>
             <ButtonStyled component='label' variant='contained' htmlFor='account-settings-upload-image'>
               Upload New Photo
               <input
@@ -80,16 +78,15 @@ const FormLayoutsSeparator = () => {
             <ResetButtonStyled color='error' variant='outlined' onClick={() => setImgSrc('/images/avatars/1.png')}>
               Reset
             </ResetButtonStyled>
-            <Typography variant='body2' sx={{ mt: 5 }}>
+            <Typography variant='body2' sx={{ marginTop: 5 }}>
               Allowed PNG or JPEG. Max size of 800K.
             </Typography>
           </Grid>
         </Grid>
       </Grid>
       <form onSubmit={e => e.preventDefault()}>
-        <CardContent className='form-layout'>
+        <CardContent>
           <Grid container spacing={5}>
-            <Grid item xs={12}></Grid>
             <Grid item xs={12} sm={6}>
               <TextField fullWidth label='First Name' placeholder='carter' />
             </Grid>
@@ -147,7 +144,7 @@ const FormLayoutsSeparator = () => {
             </Grid>
           </Grid>
         </CardContent>
-        <CardActions className='form-layout'>
+        <CardActions>
           <Button size='large' color='secondary' variant='outlined'>
             Cancel
           </Button>

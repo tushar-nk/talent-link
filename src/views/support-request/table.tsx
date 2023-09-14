@@ -98,7 +98,7 @@ const SubRequestTable = () => {
           serachFunction={(e: number) => (e)}
         />
         </div> */}
-      <Table columns={columns} data={userData} pagination={false} />
+      <Table columns={columns} data={userData} pagination={true} />
     </div>
   )
 }

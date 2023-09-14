@@ -18,28 +18,30 @@ import React from 'react'
 
 export default function index() {
   return (
-    <Card>
-      <Grid className='role-layout'>
+    <Card className='form-layout'>
+      <Grid>
         <Box sx={{ display: 'flex' }}>
-          <CardContent sx={{ mr: 25 }}>
-            <CardHeader title='Role' titleTypographyProps={{ variant: 'h2' }} sx={{ pl: 0 }} />
-            <Grid container spacing={5}>
+          <CardContent sx={{width: '50%'}}>
+            <CardHeader title='Role' titleTypographyProps={{ variant: 'h2' }} className='support-subject'/>
+            <Grid container>
               <Grid item xs={12} sm={12}>
                 <TextField fullWidth placeholder='' />
               </Grid>
             </Grid>
           </CardContent>
-          <CardContent>
-            <CardHeader title='Status' titleTypographyProps={{ variant: 'h2' }} sx={{ mt: 4 }} />
-            <Grid className='status' item sx={{ ml: 6, mt: 2 }}>
-              <FormControlLabel control={<Checkbox />} label='Active' sx={{ mr: 10 }} />
+          <CardContent className='status-box'>
+            <CardHeader title='Status' titleTypographyProps={{ variant: 'h2' }} className='support-subject'/>
+            <Grid container>
+            <Grid item xs={12} sm={12}>
+              <FormControlLabel control={<Checkbox />} label='Active' sx={{ marginRight: 10 }} />
               <FormControlLabel control={<Checkbox />} label='Deactive' />
+              </Grid>
             </Grid>
           </CardContent>
         </Box>
         <Grid>
-          <CardHeader title='Permissions' titleTypographyProps={{ variant: 'h2' }} sx={{ mt: 4 }} />
-          <TableContainer sx={{ ml: 4 }}>
+          <CardHeader title='Permissions' titleTypographyProps={{ variant: 'h2' }} />
+          <TableContainer>
             <Table>
               <TableRow>
                 <TableCell>
@@ -95,7 +97,7 @@ export default function index() {
             </Table>
           </TableContainer>
           <CardActions>
-            <Button size='large' color='secondary' sx={{ mr: 2 }} variant='outlined'>
+            <Button size='large' color='secondary' variant='outlined'>
               Cancel
             </Button>
             <Button size='large' type='submit' variant='contained'>

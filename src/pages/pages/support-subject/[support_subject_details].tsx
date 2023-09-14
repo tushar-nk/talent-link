@@ -13,25 +13,25 @@ import {
 
 export default function index() {
   return (
-    <Card>
-      <Grid sx={{ ml: 20, mt: 10, mr: 20, mb: 10 }}>
+    <Card className='form-layout'>
+      <Grid>
         <CardContent>
-          <CardHeader title='Support Subject' titleTypographyProps={{ variant: 'h2' }} />
+          <CardHeader title='Support Subject' titleTypographyProps={{ variant: 'h2' }} className='support-subject' />
           <Grid container spacing={5}>
-            <Grid item xs={12} sm={9}>
-              <TextField fullWidth sx={{ paddingLeft: 4 }} />
+            <Grid item xs={12} sm={12}>
+              <TextField fullWidth />
             </Grid>
           </Grid>
         </CardContent>
-        <CardContent sx={{ mt: 6 }}>
-          <CardHeader title='Status' titleTypographyProps={{ variant: 'h2' }} />
-          <Grid className='status' item sx={{ ml: 6, mt: 2 }}>
-            <FormControlLabel control={<Checkbox />} label='Active' sx={{ mr: 10 }} />
+        <CardContent>
+          <CardHeader title='Status' titleTypographyProps={{ variant: 'h2' }} className='support-subject' />
+          <Grid className='status' item>
+            <FormControlLabel control={<Checkbox />} label='Active' sx={{ marginRight: 10 }} />
             <FormControlLabel control={<Checkbox />} label='Deactive' />
           </Grid>
         </CardContent>
-        <CardActions sx={{ mt: 6, ml: 4 }}>
-          <Button size='large' color='secondary' sx={{ mr: 2 }} variant='outlined'>
+        <CardActions>
+          <Button size='large' color='secondary' variant='outlined'>
             Cancel
           </Button>
           <Button size='large' type='submit' variant='contained'>

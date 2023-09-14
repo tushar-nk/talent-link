@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
-import Divider from '@mui/material/Divider'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import OutlinedInput from '@mui/material/OutlinedInput'
@@ -13,12 +11,14 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { Button, CardActions, Chip, Stack, Typography } from '@mui/material'
+import { Button, CardActions, Chip, Stack, TextField, Typography } from '@mui/material'
+import Education from './education'
+import Testimonial from './testimonials'
+import History from './history'
+import Autocomplete from '@mui/material/Autocomplete'
 
 // ** icons
 import EditIcon from '@mui/icons-material/Edit'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import DeleteIcon from '@mui/icons-material/Delete'
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -35,7 +35,47 @@ export default function ResumeDetails() {
   const [experience, setExperience] = useState<string[]>([])
   const [availability, setAvailability] = useState<string[]>([])
   const [date, setDate] = useState<Date | null | undefined>(null)
+  const [skills, setSkills] = useState<string[]>([])
+  const [isEditing, setIsEditing] = useState(false)
+  const [editingSkillIndex, setEditingSkillIndex] = useState(-1)
+  const [newSkill, setNewSkill] = useState('')
 
+  const handleAddSkill = () => {
+    if (newSkill.trim() !== '') {
+      const updatedSkills = [...skills]
+      if (editingSkillIndex === -1) {
+        updatedSkills.push(newSkill)
+      } else {
+        updatedSkills[editingSkillIndex] = newSkill
+        setEditingSkillIndex(-1)
+      }
+      setSkills(updatedSkills)
+      setNewSkill('')
+      setIsEditing(false)
+    }
+  }
+
+  const handleEditSkill = index => {
+    setIsEditing(true)
+    setEditingSkillIndex(index)
+    setNewSkill(skills[index])
+  }
+
+  const handleDeleteSkill = index => {
+    const updatedSkills = [...skills]
+    updatedSkills.splice(index, 1)
+    setSkills(updatedSkills)
+  }
+
+  const toggleEdit = () => {
+    setIsEditing(!isEditing)
+    if (!isEditing) {
+      setNewSkill('')
+      setEditingSkillIndex(-1)
+    }
+  }
+
+  // Handle Select
   const handleSelectCompany = (event: SelectChangeEvent<string[]>) => {
     setCompany(event.target.value as string[])
   }
@@ -60,26 +100,17 @@ export default function ResumeDetails() {
     return <TextField fullWidth {...props} label='Birth Date' autoComplete='off' />
   }
 
-  const handleClick = () => {
-    console.info('You clicked the Chip.')
-  }
-
-  const handleDelete = () => {
-    console.info('You clicked the delete icon.')
-  }
-
   return (
     <>
-      <Card sx={{ mb: 6 }}>
+      <Card className='resume-layout'>
         <CardHeader title='Basic Details' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
-        <Divider sx={{ margin: 0 }} />
-        <Box sx={{ display: 'flex', mt: 10, mb: 10 }}>
-          <ImgStyled src={imgSrc} alt='Profile Pic' sx={{ ml: 8 }} />
+        <Box sx={{ display: 'flex', margin: 10 }}>
+          <ImgStyled src={imgSrc} alt='Profile Pic' />
           <Grid container spacing={5}>
-            <Grid item xs={12} sm={3} sx={{ mt: 10, ml: 2 }}>
+            <Grid item xs={12} sm={4}>
               <TextField fullWidth label='Employee Name' placeholder='carter Leonerd' />
             </Grid>
-            <Grid item xs={12} sm={4} sx={{ mt: 10, ml: 2 }}>
+            <Grid item xs={12} sm={4}>
               <FormControl fullWidth>
                 <InputLabel id='form-layouts-separator-multiple-select-label'>Company Name</InputLabel>
                 <Select
@@ -95,7 +126,7 @@ export default function ResumeDetails() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={4} sx={{ mt: 10, ml: 2 }}>
+            <Grid item xs={12} sm={4}>
               <FormControl fullWidth>
                 <InputLabel id='form-layouts-separator-multiple-select-label'>Designation</InputLabel>
                 <Select
@@ -111,7 +142,7 @@ export default function ResumeDetails() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={3} sx={{ ml: 2 }}>
+            <Grid item xs={12} sm={3}>
               <DatePicker
                 selected={date}
                 showYearDropdown
@@ -122,7 +153,7 @@ export default function ResumeDetails() {
                 onChange={(date: Date) => setDate(date)}
               />
             </Grid>
-            <Grid item xs={12} sm={8} sx={{ ml: 2 }}>
+            <Grid item xs={12} sm={9}>
               <FormControl fullWidth>
                 <InputLabel id='form-layouts-separator-multiple-select-label'>Language</InputLabel>
                 <Select
@@ -138,7 +169,7 @@ export default function ResumeDetails() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={4} sx={{ ml: 2 }}>
+            <Grid item xs={12} sm={4}>
               <FormControl fullWidth>
                 <InputLabel id='form-layouts-separator-multiple-select-label'>Experience</InputLabel>
                 <Select
@@ -154,7 +185,7 @@ export default function ResumeDetails() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={4} sx={{ ml: 2 }}>
+            <Grid item xs={12} sm={4}>
               <FormControl fullWidth>
                 <InputLabel id='form-layouts-separator-multiple-select-label'>Availability</InputLabel>
                 <Select
@@ -169,115 +200,82 @@ export default function ResumeDetails() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={4}>
               <TextField fullWidth label='Location' placeholder='Gujarat' />
             </Grid>
           </Grid>
         </Box>
       </Card>
 
-      <Card sx={{ mb: 6 }}>
+      <Card className='resume-layout'>
         <CardHeader title='Technical Skills' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
-        <Divider sx={{ margin: 0 }} />
-        <Box sx={{ mt: 10, mb: 10 }}>
+        <Box sx={{ margin: 10 }}>
           <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ ml: 8, fontSize: '20px' }}>Skills</Typography>
-            <EditIcon sx={{ ml: 8, cursor: 'pointer' }} />
+            <Typography sx={{ fontSize: '20px' }}>Skills</Typography>
+            <EditIcon sx={{ marginLeft: 7, cursor: 'pointer' }} onClick={toggleEdit} />
           </Box>
-          <Box sx={{ display: 'flex' }}>
-            <Stack direction='row' spacing={1} sx={{ paddingLeft: 6, paddingTop: 6 }}>
-              <Chip
-                label='Web Application'
-                variant='outlined'
-                onClick={handleClick}
-                onDelete={handleDelete}
-                className='skill-title'
+          <Stack direction='row' spacing={1} sx={{ marginTop: 5 }}>
+            {isEditing ? (
+              <Autocomplete
+                freeSolo
+                value={newSkill}
+                options={['abc', 'xyz']} // Replace with your list of available options
+                onChange={(event, newValue) => setNewSkill(newValue)}
+                onKeyPress={event => {
+                  if (event.key === 'Enter') {
+                    handleAddSkill()
+                  }
+                }}
+                renderInput={params => (
+                  <div style={{ alignItems: 'center', width: '180px', marginRight: 5 }}>
+                    <TextField {...params} label='New Skill' variant='outlined' fullWidth autoFocus />
+                  </div>
+                )}
               />
-            </Stack>
-            <Stack direction='row' spacing={1} sx={{ paddingLeft: 6, paddingTop: 6 }}>
-              <Chip
-                label='Mobile Application'
-                variant='outlined'
-                onClick={handleClick}
-                onDelete={handleDelete}
-                className='skill-title'
-              />
-            </Stack>
-          </Box>
+            ) : null}
+            {skills.map((skill, index) => (
+              <div key={index}>
+                <Chip
+                  label={skill}
+                  variant='outlined'
+                  onDelete={() => handleDeleteSkill(index)}
+                  onClick={() => handleEditSkill(index)}
+                  className='skill-title'
+                />
+              </div>
+            ))}
+          </Stack>
         </Box>
       </Card>
 
-      <Card sx={{ mb: 6 }}>
+      <Card className='resume-layout'>
         <CardHeader title='Project Brief' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
-        <Divider sx={{ margin: 0 }} />
-        <Box sx={{ mt: 10, mb: 40 }}></Box>
-      </Card>
-
-      <Card sx={{ mb: 6 }}>
-        <CardHeader title='Educational Details' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
-        <Divider sx={{ margin: 0 }} />
-        <Box sx={{ mt: 10, mb: 10 }}>
-          <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ ml: 8, fontSize: '20px' }}>Education</Typography>
-            <AddCircleIcon sx={{ ml: 8, cursor: 'pointer' }} />
-          </Box>
-          <Box sx={{ display: 'flex', mt: 8 }}>
-            <Typography variant='h6' sx={{ ml: 8 }}>
-              L D Engg
-            </Typography>
-            <EditIcon sx={{ ml: 20, cursor: 'pointer' }} />
-            <DeleteIcon sx={{ ml: 6, cursor: 'pointer' }} />
-          </Box>
-          <Box sx={{ ml: 8 }}>
-            <Typography>Bachelor's degree</Typography>
-            <Typography>2000-2003</Typography>
-          </Box>
+        <Box sx={{ margin: 10 }}>
+          <Grid container spacing={5}>
+            <Grid item xs={12} sm={12}>
+              <TextField fullWidth label='Project Title' placeholder='' />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField fullWidth multiline rows={3} label='Audience' placeholder='' />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField fullWidth label='Purpose' placeholder='' />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField fullWidth label='Team' placeholder='' />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField fullWidth label='Goal' placeholder='' />
+            </Grid>
+          </Grid>
         </Box>
       </Card>
 
-      <Card sx={{ mb: 6 }}>
-        <CardHeader title='Testimonials' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
-        <Divider sx={{ margin: 0 }} />
-        <Box sx={{ mt: 10, mb: 10 }}>
-          <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ ml: 8, fontSize: '20px' }}>Testimonials</Typography>
-            <AddCircleIcon sx={{ ml: 8, cursor: 'pointer' }} />
-          </Box>
-          <Box sx={{ display: 'flex', mt: 8 }}>
-            <Typography variant='h6' sx={{ ml: 8 }}>
-              L D Engg
-            </Typography>
-            <EditIcon sx={{ ml: 20, cursor: 'pointer' }} />
-            <DeleteIcon sx={{ ml: 6, cursor: 'pointer' }} />
-          </Box>
-          <Box sx={{ ml: 8 }}>
-            <Typography>Bachelor's degree</Typography>
-            <Typography>2000-2003</Typography>
-          </Box>
-        </Box>
-      </Card>
+      <Education />
 
-      <Card sx={{ mb: 6 }}>
-        <CardHeader title='Employment History' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
-        <Divider sx={{ margin: 0 }} />
-        <Box sx={{ mt: 10, mb: 10 }}>
-          <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ ml: 8, fontSize: '20px' }}>Employment History</Typography>
-            <AddCircleIcon sx={{ ml: 8, cursor: 'pointer' }} />
-          </Box>
-          <Box sx={{ display: 'flex', mt: 8 }}>
-            <Typography variant='h6' sx={{ ml: 8 }}>
-              L D Engg
-            </Typography>
-            <EditIcon sx={{ ml: 20, cursor: 'pointer' }} />
-            <DeleteIcon sx={{ ml: 6, cursor: 'pointer' }} />
-          </Box>
-          <Box sx={{ ml: 8 }}>
-            <Typography>Bachelor's degree</Typography>
-            <Typography>2000-2003</Typography>
-          </Box>
-        </Box>
-      </Card>
+      <Testimonial />
+
+      <History />
 
       <CardActions>
         <Button size='large' color='secondary' variant='outlined'>

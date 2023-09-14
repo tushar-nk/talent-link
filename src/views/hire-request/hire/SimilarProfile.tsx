@@ -5,7 +5,7 @@ const SimilarProfile = () => {
   return (
     <>
       <Card>
-        <Typography className='head-top'>Similar Profile</Typography>
+        <Typography className='head-top '>Similar Profile</Typography>
       </Card>
     </>
   )

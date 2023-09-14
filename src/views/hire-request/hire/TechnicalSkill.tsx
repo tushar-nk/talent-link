@@ -5,7 +5,7 @@ const TechnicalSkill = () => {
   return (
     <>
       <Card className='technical-skill card'>
-        <Typography className='head-top' variant='h5'>
+        <Typography className='head-top ' variant='h5'>
           Technical Skill
         </Typography>
         <div className='summery'>

@@ -5,7 +5,7 @@ const CompanyDetails = () => {
   return (
     <>
       <Card className='company-details'>
-        <Typography variant='h5'>Company Details</Typography>
+        <Typography className='hire-request-titles'>Company Details</Typography>
       </Card>
     </>
   )

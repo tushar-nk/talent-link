@@ -5,7 +5,7 @@ const ProjectBrief = () => {
   return (
     <>
       <Card className='card'>
-        <Typography className='head-top' variant='h5'>Project Brief</Typography>
+        <Typography className='head-top ' variant='h5'>Project Brief</Typography>
         <div className='summery'>
         <Typography>
             With Next.js, your React applications start with a rich structure and set of features. Built-in routing,

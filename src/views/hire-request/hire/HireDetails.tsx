@@ -9,7 +9,7 @@ const HireDetails = () => {
     <>
       <Card className='hire-details-card '>
         <div>
-          <Typography variant='h4'>Hire Details</Typography>
+          <Typography className='hire-request-titles'>Hire Details</Typography>
         </div>
         <Grid container spacing={2} columns={24}>
           <Grid className='details-field' xs={6}>
@@ -29,7 +29,7 @@ const HireDetails = () => {
             <Grid item>1000$</Grid>
           </Grid>
           <Grid item xs={12} lg={8}>
-            <div  className='project-detail'>
+            <div className='project-detail'>
               <Typography variant='h6'>Project Details</Typography>
               <Typography>
                 {' '}
@@ -45,12 +45,8 @@ const HireDetails = () => {
             </div>
           </Grid>
           <Grid item xs={4}>
-            <FormControlLabel
-              value='start'
-              control={<Switch color='primary' defaultChecked />}
-              label='Approve'
-              labelPlacement='start'
-            />
+            <Typography className='switch-name'>Approve</Typography>
+            <Switch color='primary' defaultChecked />
           </Grid>
         </Grid>
       </Card>

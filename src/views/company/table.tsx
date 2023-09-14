@@ -152,7 +152,7 @@ const CompanyListingTable = () => {
           serachFunction={(e: number) => (e)}
         />
         </div> 
-        <div className="no-wrap-table"> 
+        <div > 
       <Table columns={columns} data={userData}  />
       </div>
        

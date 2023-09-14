@@ -18,7 +18,7 @@ const UsersTable = () => {
      desigination: "Business",
      email:"cmheta@gmail.com",
      mobile_no: "0987654356789",
-     actions: "blue"
+     actions: "blue",
     },
     {
       id: 2,
@@ -237,7 +237,7 @@ const UsersTable = () => {
           serachFunction={(e: number) => (e)}
         />
         </div>
-          <Table columns={columns} data={userData}  />
+          <Table columns={columns} data={userData} pagination={true} />
     </div>
   )
 }

@@ -1,10 +1,9 @@
 // ** React Imports
-import { useState , forwardRef } from 'react'
+import { useState } from 'react'
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel'
@@ -18,7 +17,6 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 export default function SupportRequestDetails() {
-  // ** States
   const [language, setLanguage] = useState<string[]>([])
   const [date, setDate] = useState<Date | null | undefined>(null)
 
@@ -26,14 +24,15 @@ export default function SupportRequestDetails() {
   const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
     setLanguage(event.target.value as string[])
   }
-  const CustomInput = forwardRef((props, ref) => {
-    return <TextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
-  })
+
+  const CustomInput = (props: any) => {
+    return <TextField fullWidth {...props} label='Birth Date' autoComplete='off' />
+  }
 
   return (
-    <Card>
+    <Card className='form-layout'>
       <form onSubmit={e => e.preventDefault()}>
-        <CardContent className='request-layout'>
+        <CardContent>
           <Grid container spacing={5}>
             <Grid item xs={12} sm={3}>
             <DatePicker
@@ -44,10 +43,9 @@ export default function SupportRequestDetails() {
                 customInput={<CustomInput />}
                 id='form-layouts-separator-date'
                 onChange={(date: Date) => setDate(date)}
-                className='custom-datepicker'
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={9}>
               <TextField fullWidth label='User Name' placeholder='carter Leonard' />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -84,7 +82,7 @@ export default function SupportRequestDetails() {
             </Grid>
           </Grid>
         </CardContent>
-        <CardActions className='request-layout-btn'>
+        <CardActions>
           <Button size='large' color='secondary' variant='outlined'>
             Cancel
           </Button>

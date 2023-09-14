@@ -5,7 +5,7 @@ const Rating = () => {
   return (
     <>
       <Card className='rating'>
-        <Typography variant='h5'>Rating & Review</Typography>
+        <Typography className='hire-request-titles'>Rating & Review</Typography>
       </Card>
     </>
   )

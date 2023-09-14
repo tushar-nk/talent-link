@@ -76,9 +76,9 @@ const CardStatsVertical = (props: CardStatsVerticalProps) => {
   return (
     <Card className={className + ' ' + 'categories-cards'}>
       <CardContent>
-        <Typography sx={{ fontWeight: 600, fontSize: '17px' }}>{title}</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: '17px', color: '#000000' }}>{title}</Typography>
         <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>
-          <Typography variant='h6' className='count' sx={{ mr: 2, textAlign: 'center' }}>
+          <Typography variant='h6' className='count' sx={{ mr: 2, textAlign: 'center', color: '#000000' }}>
             {stats}
           </Typography>
         </Box>

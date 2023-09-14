@@ -90,7 +90,7 @@ const RoleTable = () => {
       <div style={{ marginBottom: '20px' }}>
         <TableHeaderRole serachFunction={(e: number) => e} />
       </div>
-      <Table columns={columns} data={userData} pagination={false}/>
+      <Table columns={columns} data={userData} pagination={true}/>
     </div>
   )
 }
