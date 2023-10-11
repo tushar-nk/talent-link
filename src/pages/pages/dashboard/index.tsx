@@ -1,9 +1,6 @@
-// ** MUI Imports
 import React from 'react'
-
-// ** Custom Components Imports
 import CardStatsVertical from 'src/@core/components/card-statistics/card-stats-vertical/index'
-import { Card, Typography, Grid } from '@mui/material'
+import { Card, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import SubRequestTable from 'src/views/support-request/table'
 
@@ -16,55 +13,61 @@ const CommonDateRangePicker = dynamic(() => import('../../../views/dashboard/dat
 const Dashboard = () => {
   return (
     <>
-    <div className='dashboard'>
-      <CommonDateRangePicker/>
-      <div className='hiring-categories'>
-        <CardStatsVertical className='company-clr' stats='59' title='Companies' />
-        <CardStatsVertical className='resume-clr' stats='82' title='Resumes' />
-        <CardStatsVertical className='categories-clr' stats='132' title='Categories' />
-        <CardStatsVertical className='total-clr' stats='10' title='Total Hired' />
-      </div>
+      <div className='dashboard'>
+        <CommonDateRangePicker />
+        <div className='hiring-categories'>
+          <CardStatsVertical className='card-bg-color' stats='59' title='Companies' />
+          <CardStatsVertical className='card-bg-color' stats='82' title='Resumes' />
+          <CardStatsVertical className='card-bg-color' stats='132' title='Categories' />
+          <CardStatsVertical className='card-bg-color' stats='10' title='Total Hired' />
+        </div>
 
-      <div className='dashboard-graphs'>
-        <Card className='top-company-card'>
-          <TopCompany />
-        </Card>
-        <Card className='hiring-card'>
-          <Hiring />
-        </Card>
-      </div>
-      <div>
-        <Card className='profile-trend'>
-          <ProfileTrends />
-        </Card>
-      </div>
-      <div>
-        <Card className='hire-employee'>
-          <HiringEmployee />
-        </Card>
-      </div>
-      <div className='dashboard-table'>
-        <Typography className='table-title' sx={{ mb: 5 }}>
-          Hiring Request
-        </Typography>
-        <SubRequestTable />
-      </div>
+        <div className='dashboard-graphs'>
+          <Card className='top-company-card'>
+            <TopCompany />
+          </Card>
+          <Card className='hiring-card'>
+            <Hiring />
+          </Card>
+        </div>
+        <div>
+          <Card className='profile-trend'>
+            <ProfileTrends />
+          </Card>
+        </div>
+        <div>
+          <Card className='hire-employee'>
+            <HiringEmployee />
+          </Card>
+        </div>
+        <div className='dashboard-table'>
+          <Typography className='table-title' sx={{ mb: 5 }}>
+            Hiring Request
+          </Typography>
+          <SubRequestTable />
+        </div>
 
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
-          <Typography className='table-title' sx={{ mt: 10, mb: 5 }}>
+        <div>
+          <Typography className='table-title' sx={{ mb: 5 }}>
             Latest Profiles
           </Typography>
           <SubRequestTable />
-        </Grid>
-        <Grid item xs={6}>
-          <Typography className='table-title' sx={{ mt: 10, mb: 5 }}>
+        </div>
+        <div>
+          <Typography className='table-title' sx={{ mb: 5 }}>
             Support Request
           </Typography>
           <SubRequestTable />
-        </Grid>
-      </Grid>
-    </div>
+        </div>
+        {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={6}>
+            
+          </Grid>
+          <Grid item xs={6}>
+           
+          </Grid>
+        </Grid> */}
+      </div>
     </>
   )
 }

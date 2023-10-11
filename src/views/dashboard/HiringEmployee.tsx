@@ -14,21 +14,21 @@ const HiringEmployee = () => {
     },
     fill: {
       opacity: 1,
-      colors: ['#323B81', '#0087AC', '#82C272']
+      colors: ['#A5D8DD', '#EA6A47','#1C4E80' ]
     }
   })
   const [series] = useState([
     {
       name: 'PRODUCT A',
-      data: [44, 55, 41, 67, 22, 43, 21, 49]
+      data: [35, 20, 55, 50, 22, 43, 21, 49]
     },
     {
       name: 'PRODUCT B',
-      data: [13, 23, 20, 8, 13, 27, 33, 12]
+      data: [27, 23, 20, 14, 13, 27, 33, 12]
     },
     {
       name: 'PRODUCT C',
-      data: [11, 17, 15, 15, 21, 14, 15, 13]
+      data: [45, 31, 40, 25, 21, 34, 20, 30]
     }
   ])
   return (

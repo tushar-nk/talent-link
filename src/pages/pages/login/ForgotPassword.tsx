@@ -32,11 +32,11 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ open, onClose }) => {
         <Box
           sx={{
             padding: 3,
-            width: '80%', // Adjust the width as needed
+            width: '80%',
             backgroundColor: 'white',
-            borderRadius: '8px', // Optional: Add border radius
-            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional: Add box shadow
-            maxWidth: '400px' // Limit the maximum width
+            borderRadius: '8px',
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+            maxWidth: '400px'
           }}
         >
           <Typography variant='h5' sx={{ marginBottom: 2 }}>

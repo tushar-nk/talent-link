@@ -1,29 +1,24 @@
-import { Card, useTheme,Button } from '@mui/material'
+import { Card, useTheme, Button } from '@mui/material'
 
 import React from 'react'
-import TableHeaderSearch from 'src/@core/table/TableHeaderSearch'
+
 import { useRouter } from 'next/router'
 
-//   import CommonDateRangePicker from "@/components/Common/DateRange/DateRangePicker";
-  
+import TableHeaderSearch from 'src/@core/table/TableHeaderSearch'
 
-  
-  interface TYPE {
-    isAddButton?: boolean;
-    data?: any;
-    serachFunction?:any;
+interface TYPE {
+  isAddButton?: boolean
+  data?: any
+  searchFunction?: any
+}
+
+export default function TableHeaderSubject({ searchFunction }: TYPE) {
+  const theme = useTheme()
+  const router = useRouter()
+
+  const handleButtonClick = () => {
+    router.push('/pages/support-subject/support-subject-details')
   }
-  
-  export default function TableHeaderSubject({ isAddButton,data,serachFunction }: TYPE) {
-    // const [isTrue, setIsTrue] = React.useState<boolean>(false);
-    const theme = useTheme();
-    const router = useRouter();
-
-
-    const handleButtonClick = () => {
-        // Navigate to the desired page when the button is clicked
-        router.push('/pages/support-subject/support_subject_details');
-      };
 
   return (
     <>
@@ -31,20 +26,18 @@ import { useRouter } from 'next/router'
         variant='outlined'
         className='common-table-header'
         style={{
-          // background: theme.palette.primary.light,
           borderRadius: '16px',
           background: theme.palette.primary.light,
-          // background: "#a69cac",
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           gap: '40rem',
           padding: '5px',
-          border:'none',
+          border: 'none'
         }}
       >
-        <TableHeaderSearch serachFunction={e => serachFunction(e)} />
-        <Button onClick={handleButtonClick} variant='contained' >
+        <TableHeaderSearch onSearch={(query:string) => searchFunction(query)} />
+        <Button onClick={handleButtonClick} variant='contained'>
           ADD
         </Button>
       </Card>

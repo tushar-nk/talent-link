@@ -23,6 +23,7 @@ import ScrollToTop from 'src/@core/components/scroll-to-top'
 
 // ** Styled Component
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+import { useRouter } from 'next/router'
 
 const VerticalLayoutWrapper = styled('div')({
   height: '100%',
@@ -61,6 +62,25 @@ const VerticalLayout = (props: LayoutProps) => {
 
   // ** Toggle Functions
   const toggleNavVisibility = () => setNavVisible(!navVisible)
+  const router = useRouter()
+  const { asPath } = router
+  const url = typeof window !== 'undefined' ? new URL(window.location.href) : null
+  const endPath: any = url?.pathname.split('/') || asPath.split('/')
+
+  const commonHeaderPaths = [
+    'userdetails',
+    'roledetails',
+    'companydetails',
+    'resumedetails',
+    'viewdetail',
+    'hiredetails',
+    'sub-category-details',
+    'skills-details',
+    'support-subject-details',
+    'support-request-details',
+    'designation-detail',
+    'category-details',
+  ]
 
   return (
     <>
@@ -73,7 +93,9 @@ const VerticalLayout = (props: LayoutProps) => {
           {...props}
         />
         <MainContentWrapper className='layout-content-wrapper'>
-          <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
+          {!commonHeaderPaths.includes(endPath[endPath.length - 2]) && (
+            <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
+          )}
 
           <ContentWrapper
             className='layout-page-content'
@@ -85,7 +107,12 @@ const VerticalLayout = (props: LayoutProps) => {
               })
             }}
           >
-            {children}
+            <div
+              className={!commonHeaderPaths.includes(endPath[endPath.length - 2]) ? 'layout-content-wrapper' : ''}
+              style={{ flexGrow: 1 }}
+            >
+              {children}
+            </div>
           </ContentWrapper>
 
           <Footer {...props} />

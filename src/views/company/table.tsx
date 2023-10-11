@@ -3,6 +3,7 @@ import Table from 'src/@core/table/Table';
 import IconService from 'src/@core/utils/Icons';
 import Image from "next/image";
 import TableHeaderCompany from './TableHeaders';
+import CommonActions from 'src/@core/utils/CommonActions';
 const CompanyListingTable = () => {
   const userData: any = [
     {
@@ -53,97 +54,70 @@ const CompanyListingTable = () => {
   ]
   const columns = [
     {
-      Header: "Log",
-      accessor: "log",
-      
+      Header: 'Log',
+      accessor: 'log'
     },
     {
-      Header: "Company Name",
-      accessor: "company_name",
-    
+      Header: 'Company Name',
+      accessor: 'company_name'
     },
     {
-        Header: "Owner Name",
-        accessor: "owner_name",
-      
-      },
+      Header: 'Owner Name',
+      accessor: 'owner_name'
+    },
     {
-        Header: "Category",
-        accessor: "category",
-    
-      },
+      Header: 'Category',
+      accessor: 'category'
+    },
     {
-        Header: "Sub-Category",
-        accessor: "subcategory",
-      
-      },
+      Header: 'Sub-Category',
+      accessor: 'subcategory'
+    },
     {
-        Header: "Employess",
-        accessor: "employess",
-     
-      },
+      Header: 'Employess',
+      accessor: 'employess'
+    },
     {
-        Header: "Working Time",
-        accessor: "working_time",
-     
-      },
+      Header: 'Working Time',
+      accessor: 'working_time'
+    },
     {
-        Header: "Contact No.",
-        accessor: "contact_no",
-    
-      },
-      
-    {
-        Header: "Address.",
-        accessor: "address",
-     
-      },
-    {
-        Header: "City",
-        accessor: "city",
-     
-      },
-    {
-        Header: "State",
-        accessor: "state",
-     
-      },
-    {
-        Header: "Country",
-        accessor: "country",
-   
-      },
-
+      Header: 'Contact No.',
+      accessor: 'contact_no'
+    },
 
     {
-      Header: "Actions",
-      accessor: "actions",
-     
+      Header: 'Address.',
+      accessor: 'address'
+    },
+    {
+      Header: 'City',
+      accessor: 'city'
+    },
+    {
+      Header: 'State',
+      accessor: 'state'
+    },
+    {
+      Header: 'Country',
+      accessor: 'country'
+    },
+
+    {
+      Header: 'Actions',
+      accessor: 'actions',
+
       Cell: ({ value, row }: any) => {
+        const menuLabels = ['View', 'Edit', 'Soft Delete', 'Hard Delete'];
+        const handleMenuItemClick = (key, menuItem) => {
+          console.log(`Clicked: ${key} - ${menuItem}`);
+        }
         return (
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Image src={IconService.DeleteRedRounded} alt='' className='cursor-pointer' />
-
-            <div
-              style={{
-                height: '12px',
-                width: '2px',
-                backgroundColor: 'gray',
-                margin: '0 2px',
-                display: 'inline-block'
-              }}
-            ></div>
-
-            <Image
-              src={IconService.groups}
-              alt=''
-              // onClick={() => handleGroupsClick(row.original)}
-              className='cursor-pointer'
-            />
-          </div>
+          <>
+            <CommonActions onMenuItemClick={handleMenuItemClick} menuLabels={menuLabels} />
+          </>
         )
-      }
-    }
+      }    }
   ]
   return (
     <div>
@@ -153,9 +127,8 @@ const CompanyListingTable = () => {
         />
         </div> 
         <div > 
-      <Table columns={columns} data={userData}  />
+      <Table columns={columns} data={userData} pagination={true}  />
       </div>
-       
     </div>
   )
 }

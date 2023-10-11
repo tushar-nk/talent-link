@@ -5,13 +5,13 @@ import HomeOutline from 'mdi-material-ui/HomeOutline'
 import FormatLetterCase from 'mdi-material-ui/FormatLetterCase'
 import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
-
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline'
 import BusinessIcon from '@mui/icons-material/Business'
 import PortraitIcon from '@mui/icons-material/Portrait'
 import DescriptionIcon from '@mui/icons-material/Description'
 import LaunchIcon from '@mui/icons-material/Launch'
 import CoPresentIcon from '@mui/icons-material/CoPresent'
+import CastForEducationIcon from '@mui/icons-material/CastForEducation';
 
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
@@ -78,6 +78,11 @@ const navigation = (): VerticalNavItemsType => {
       title: 'Skills',
       icon: CreditCardOutline,
       path: '/pages/skills'
+    },
+    {
+      title: 'Designation',
+      icon: CastForEducationIcon,
+      path:'/pages/designation'
     },
     {
       sectionTitle: 'Reports'

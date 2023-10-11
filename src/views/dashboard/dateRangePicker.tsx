@@ -4,7 +4,7 @@ import 'react-date-range/dist/theme/default.css'
 import { DateRangePicker } from 'react-date-range'
 import { addDays } from 'date-fns'
 import theme from '../../@core/theme/palette/index'
-import { TextField, Button, FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
+import { TextField, Button, FormControl, Select, MenuItem, SelectChangeEvent, Typography } from '@mui/material'
 
 interface TYPE {
   dateTimeFilter?: (e: any) => void
@@ -39,10 +39,9 @@ const CommonDateRangePicker = ({ dateTimeFilter }: TYPE) => {
   return (
     <div>
       <div className='dateDropdown'>
-        <div>
-          <Button variant='outlined' className='custom-datePicker' onClick={handleCustomButtonClick}>
-            Custom
-          </Button>
+        <div className='showDateRange' onClick={handleCustomButtonClick}>
+          <Typography className='date-range'>{formattedStartDate}</Typography>-
+          <Typography className='date-range'>{formattedEndDate}</Typography>
         </div>
         {showCustomPicker && (
           <div className='dateRange'>

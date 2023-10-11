@@ -1,37 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from 'src/@core/table/Table'
-import Image from 'next/image'
-import TableHeader from '../role/TableHeaders'
-import TableHeaderRequest from './TableHeaders'
-import { Typography, Chip, Grid } from '@mui/material'
+import { Chip } from '@mui/material'
+import { useRouter } from 'next/router'
+import CommonActions from 'src/@core/utils/CommonActions'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getAllSupportRequest,
+  hardDeleteSupportRequest,
+  softDeleteSupportRequest
+} from 'src/Store/Reducer/SupportRequestSlice'
+import TableHeaderRequest from 'src/views/support-request/TableHeaders'
 
 const SubRequestTable = () => {
-  const userData: any = [
-    {
-      id: 1,
-      username: 'Anand Jain',
-      email: 'anandjain@gmail.com',
-      mobile_no: '0987654356789',
-      request_date: '01-02-2023',
-      request_subject: 'Register new device'
-      //  status:"open",
-      //  actions: "blue"
-    },
-    {
-      id: 2,
-      username: 'Parag Shah',
-      email: 'paragshah9@gmail.com',
-      mobile_no: '0987654356789',
-      request_date: '01-02-2023',
-      request_subject: 'Payment issue'
-      // status:"closed",
-      // actions: "blue"
-    }
-  ]
+  const [filteredData, setFilteredData] = useState([])
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+  interface UserData {
+    _id: number
+  }
+
+  useEffect(() => {
+    dispatch(getAllSupportRequest())
+  }, [dispatch])
+
+  const handleSoftDelete = async _id => {
+    try {
+      await dispatch(softDeleteSupportRequest({ _id: _id }))
+    } catch (error) {}
+  }
+
+  const handleHardDelete = async _id => {
+    try {
+      await dispatch(hardDeleteSupportRequest({ _id: _id }))
+    } catch (error) {}
+  }
+
+  const handleGroupsClick = (userData: UserData, mode: 'view' | 'edit') => {
+    router.push({
+      pathname: '/pages/support-request/support-request-details',
+      query: { userID: userData._id, mode: mode }
+    })
+  }
+
   const columns = [
     {
       Header: 'UserName',
-      accessor: 'username'
+      accessor: 'userName'
     },
     {
       Header: ' E-mail',
@@ -39,66 +54,120 @@ const SubRequestTable = () => {
     },
     {
       Header: 'Mobile no.',
-      accessor: 'mobile_no'
+      accessor: 'mobileNo'
     },
     {
-      Header: 'Request Date',
-      accessor: 'request_date'
-    },
-    {
-      Header: ' Request Subject',
-      accessor: 'request_subject'
+      Header: 'Delete',
+      accessor: 'isDeleted',
+      Cell: ({ value }) => {
+        const chipStyle = {
+          fontWeight: '500',
+          backgroundColor: value ? 'rgb(76 175 80 / 30%)' : 'rgb(239 83 80 / 30%)',
+          color: value ? '#1b5e20' : '#c62828'
+        }
+        return <Chip label={value ? 'True' : 'False'} style={chipStyle} />
+      }
     },
     {
       Header: 'Status',
       accessor: 'status',
-      Cell: ({}) => {
-        const [isActive, setIsActive] = useState(true)
-
-        const handleClick = () => {
-          setIsActive(!isActive)
+      Cell: ({ value }) => {
+        let chipStyle = {}
+        let statusText = ''
+        switch (value) {
+          case 'In progress':
+            chipStyle = {
+              fontWeight: '500',
+              backgroundColor: '#e0f7fa',
+              color: '#26c6da'
+            }
+            statusText = 'In progress'
+            break
+          case 'On Hold':
+            chipStyle = {
+              fontWeight: '500',
+              backgroundColor: '#efebe9',
+              color: '#8d6e63'
+            }
+            statusText = 'On Hold'
+            break
+          case 'Open':
+            chipStyle = {
+              fontWeight: '500',
+              backgroundColor: '#e8f5e9',
+              color: '#66bb6a'
+            }
+            statusText = 'Open'
+            break
+          case 'Closed':
+            chipStyle = {
+              fontWeight: '500',
+              backgroundColor: '#ffebee',
+              color: '#ef5350'
+            }
+            statusText = 'Closed'
+            break
+          case 'Resolved':
+            chipStyle = {
+              fontWeight: '500',
+              backgroundColor: '#f9fbe7',
+              color: '#d4e157'
+            }
+            statusText = 'Resolved'
+            break
         }
-        return (
-          <div onClick={handleClick}>
-            <Chip
-              sx={{
-                height: 24,
-                fontSize: '0.75rem',
-                textTransform: 'capitalize',
-                '& .MuiChip-label': { fontWeight: 500 }
-              }}
-              label={isActive ? 'Open' : 'Closed'}
-              color={isActive ? 'info' : 'error'}
-            />
-          </div>
-        )
+        return <Chip label={statusText} style={chipStyle} />
       }
     },
-
     {
       Header: 'Actions',
       accessor: 'actions',
-      Cell: ({}) => {
+      Cell: ({ row }) => {
+        const menuLabels = ['View', 'Edit', 'Soft Delete', 'Hard Delete']
+        const handleMenuItemClick = key => {
+          if (key === 'Edit') {
+            handleGroupsClick(row.original, 'edit')
+          } else if (key === 'View') {
+            handleGroupsClick(row.original, 'view')
+          } else if (key === 'Soft Delete') {
+            handleSoftDelete(row?.original?._id)
+          } else if (key === 'Hard Delete') {
+            handleHardDelete(row?.original?._id)
+          }
+        }
+
         return (
-          <div>
-            <input
-              type='radio'
-              name='userSelection'
-              // value={}
-            />
-          </div>
+          <>
+            <CommonActions onMenuItemClick={handleMenuItemClick} menuLabels={menuLabels} />
+          </>
         )
       }
     }
   ]
+
+  const { GetAllSupportRequest } = useSelector(({ SupportRequestSlice }) => SupportRequestSlice)
+
+  const handleSearch = query => {
+    if (GetAllSupportRequest?.data?.data) {
+      const filtered = GetAllSupportRequest.data.data.filter(item =>
+        item.userName.toLowerCase().includes(query.toLowerCase())
+      )
+      setFilteredData(filtered)
+    }
+  }
+
   return (
     <div>
-      {/* <div style={{ marginBottom: '20px' }}>
-          <TableHeaderRequest
-          serachFunction={(e: number) => (e)}
+      <div style={{ marginBottom: '20px' }}>
+      <TableHeaderRequest searchFunction={handleSearch}  />
+      </div>     
+      {GetAllSupportRequest?.data?.data?.length > 0 && (
+        <Table
+          columns={columns}
+          data={filteredData.length > 0 ? filteredData : GetAllSupportRequest ? GetAllSupportRequest?.data?.data : []}
+          pagination={true}
         />
-        </div> */}
-      <Table columns={columns} data={userData} pagination={true} />
+      )}
     </div>
   )
 }

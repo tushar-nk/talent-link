@@ -6,16 +6,20 @@ import {
   useExpanded,
   TableInstance,
   UseSortByInstanceProps,
-  UseRowSelectInstanceProps
+  UseRowSelectInstanceProps,
+  UsePaginationInstanceProps
 } from 'react-table'
 import Image from 'next/image'
 import IconService from 'src/@core/utils/Icons'
-import { Pagination } from '@mui/material'
+import { Pagination, Button, Paper, TableContainer } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
+import { useDispatch } from 'react-redux'
+
 export type TableInstanceWithHooks<T extends object> = TableInstance<T> &
   UseRowSelectInstanceProps<T> &
+  UsePaginationInstanceProps<T> &
   UseSortByInstanceProps<T>
 
 const initialStatee: any = {
@@ -30,21 +34,22 @@ export default function Table(props: {
   isStatus?: boolean
   dataPage?: any
   pagination?: boolean
+  dispatchFunction?: any
 }) {
   const data = React.useMemo(() => [...props?.data], [props?.data])
   const columns = React.useMemo(() => [...props?.columns], [props?.columns])
   const initialState = React.useMemo(() => initialStatee, [])
-  const [page, setPage] = useState<number>(0)
+  const [pages, setPages] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
   const { pagination = true } = props
 
   const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage - 1) // Subtract 1 to start page index from 0
+    setPages(newPage - 1) // Subtract 1 to start page index from 0
   }
 
   const pageCount = 10 // Set the pageCount to 50
 
-  const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows, selectedFlatRows } = useTable(
+  const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page, rows, selectedFlatRows } = useTable(
     {
       columns,
       data,
@@ -58,6 +63,14 @@ export default function Table(props: {
   const [selected, setSelected] = useState<any>({})
   const [indexSelected, setIndexSelected] = useState<number>(0)
   const [selectedRowName, setSelectedRowName] = useState<any>('')
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    props?.dispatchFunction && dispatch(props?.dispatchFunction(`?page=1`))
+  }, [dispatch])
+
+  // const pageNumbers = Array.from({ length: props?.dataPage?.total_pages }, (_, index) => index + 1)
 
   useEffect(() => {
     if (selected && selected.alternate_document_types) {
@@ -87,11 +100,9 @@ export default function Table(props: {
     function handleKeyDown(e) {
       if (e.ctrlKey) {
         if (e.keyCode === 83) {
-          // Ctrl + S
           e.preventDefault()
           setIndexSelected(prev => prev + 1)
         } else if (e.keyCode === 85) {
-          // Ctrl + u
           e.preventDefault()
           setIndexSelected(prev => prev - 1)
         }
@@ -106,7 +117,7 @@ export default function Table(props: {
   return (
     <div>
       <div className='flex flex-col data_entry_table'>
-        <div className='table-container'>
+        <TableContainer component={Paper} className='table-container'>
           <table {...getTableProps()} className='table consultation_table'>
             <thead>
               {headerGroups?.map((headerGroup: any, i: any) => (
@@ -123,8 +134,8 @@ export default function Table(props: {
                         column.sort ? column.getSortByToggleProps() : ''
                       ])}
                     >
-                      <div className='flex items-center'>
-                        <div className='whitespace-nowrap'>{column.render('Header')}</div>
+                      <div style={{ display: 'flex', alignItems: 'center'}}>
+                        <div style={{ whiteSpace: 'nowrap' }}>{column.render('Header')}</div>
                         {column?.sort && (
                           <span className='sort-sec mb-1'>
                             {column?.isSorted ? (
@@ -144,8 +155,9 @@ export default function Table(props: {
                 </tr>
               ))}
             </thead>
-            <tbody className='' {...getTableBodyProps()}>
-              {rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, i: any) => {
+            <tbody {...getTableBodyProps()}>
+              {rows?.slice(pages * rowsPerPage, pages * rowsPerPage + rowsPerPage)?.map((row: any, i: any) => {
+              // {(page || rows)?.map((row: any, i: any)=> {
                 prepareRow(row)
                 return (
                   <React.Fragment key={i}>
@@ -176,18 +188,48 @@ export default function Table(props: {
               })}
             </tbody>
           </table>
-        </div>
+        </TableContainer>
         {pagination && (
-          <div
-            className='pagination-container'
-            style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px', marginBottom: '8px' }}
-          >
+          <div className='pagination-container'>
+            <Button
+              onClick={() => {
+                if (pages > 0) {
+                  setPages(pages - 1)
+                }
+              }}
+              disabled={pages === 0}
+              color='primary'
+              variant='outlined'
+              size='small'
+              style={{ border: 0 }}
+              role='button'
+            >
+              <ArrowBackIosIcon fontSize='small' style={{ width: '15px' }} /> Prev
+            </Button>
             <Pagination
               count={pageCount}
-              page={page + 1} // Add 1 to display current page correctly
+              page={pages + 1} // Add 1 to display the current page correctly
               onChange={handleChangePage}
               color='primary'
+              hideNextButton
+              hidePrevButton
+              siblingCount={0}
             />
+            <Button
+              onClick={() => {
+                if (pages < pageCount - 1) {
+                  setPages(pages + 1)
+                }
+              }}
+              disabled={pages === pageCount - 1}
+              color='primary'
+              variant='outlined'
+              size='small'
+              style={{ border: 0 }}
+              role='button'
+            >
+              Next <ArrowForwardIosIcon fontSize='small' style={{ width: '15px' }} />
+            </Button>
           </div>
         )}
       </div>

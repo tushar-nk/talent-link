@@ -1,98 +1,133 @@
-import React, { useState } from 'react'
-import Table from 'src/@core/table/Table';
-import IconService from 'src/@core/utils/Icons';
-import Image from "next/image";
-import { Divider, Typography, Chip } from '@mui/material';
-import TableHeader from './TableHeaders';
-import TableHeaderRole from './TableHeaders';
+import React, { useState, useEffect } from 'react'
+import Table from 'src/@core/table/Table'
+import { Chip } from '@mui/material'
+import TableHeaderRole from './TableHeaders'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { HardDeleteRole, SoftDeleteRole, getAllRole } from 'src/Store/Reducer/RoleSlice'
+import CommonActions from 'src/@core/utils/CommonActions'
+
 const RoleTable = () => {
-  const userData: any = [
-    {
-      id: 1,
-     role: "Business",
-    //  status: "Active"
-    },
-    {
-      id: 2,
-     role: "Project Manager",
-    //  status: "De-active"
-    },
-  ];
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  const [filteredData, setFilteredData] = useState([])
+
+  interface UserData {
+    _id: number
+  }
+
+  const handleHardDelete = async _id => {
+    try {
+      await dispatch(HardDeleteRole({ _id: _id }))
+      dispatch(getAllRole())
+    } catch (error) {}
+  }
+
+  const handleSoftDelete = async _id => {
+    try {
+      await dispatch(SoftDeleteRole({ _id: _id }))
+      dispatch(getAllRole())
+    } catch (error) {}
+  }
+
+  const handleGroupsClick = (userData: UserData, mode: 'view' | 'edit') => {
+    router.push({
+      pathname: '/pages/roles/roledetails',
+      query: { userID: userData._id, mode: mode }
+    })
+  }
+
+  useEffect(() => {
+    dispatch(getAllRole())
+  }, [dispatch])
+
   const columns = [
     {
       Header: 'Role',
-      accessor: 'role',
-
-      // Cell: ({ value }: any) => <div style={{ display: 'flex', alignItems: 'center' }}>{value}</div>
+      accessor: 'roleName'
     },
     {
-      Header: ' Status',
-      accessor: 'status',
-
-      Cell: ({}) => {
-        const [isActive, setIsActive] = useState(true)
-
-        const handleClick = () => {
-          setIsActive(!isActive)
+      Header: 'Delete',
+      accessor: 'isDeleted',
+      Cell: ({ value }) => {
+        const chipStyle = {
+          fontWeight: '500',
+          backgroundColor: value ? 'rgb(76 175 80 / 30%)' : 'rgb(239 83 80 / 30%)',
+          color: value ? '#1b5e20' : '#c62828'
         }
-        return (
-          <div 
-          // style={{ display: 'flex', alignItems: 'center' }} 
-          onClick={handleClick}>
-            <Chip
-              sx={{
-                height: 24,
-                fontSize: '0.75rem',
-                textTransform: 'capitalize',
-                '& .MuiChip-label': { fontWeight: 500 }
-              }}
-              label={isActive ? 'Active' : 'De-active'}
-              color={isActive ? 'success' : 'error'}
-            />
-          </div>
-        )
+        return <Chip label={value ? 'True' : 'False'} style={chipStyle} />
       }
     },
+    {
+      Header: 'Status',
+      accessor: 'isActive', // Use 'isActive' from role data
+      Cell: ({ value }) => {
+        const chipStyle = {
+          fontWeight: '500',
+          backgroundColor: value ? 'rgb(76 175 80 / 30%)' : 'rgb(239 83 80 / 30%)',
+          color: value ? '#1b5e20' : '#c62828'
+        }
+        return <Chip label={value ? 'Active' : 'InActive'} style={chipStyle} />
+      }
+    },
+
     {
       Header: 'Actions',
       accessor: 'actions',
 
       Cell: ({ value, row }: any) => {
+        const menuLabels = ['View', 'Edit', 'Soft Delete', 'Hard Delete']
+        const handleMenuItemClick = (key, menuItem) => {
+          if (key === 'Edit') {
+            handleGroupsClick(row.original, 'edit')
+          } else if (key === 'View') {
+            handleGroupsClick(row.original, 'view')
+          } else if (key === 'Soft Delete') {
+            handleSoftDelete(row?.original?._id)
+          } else if (key === 'Hard Delete') {
+            handleHardDelete(row?.original?._id)
+          }
+        }
         return (
-          <div 
-          // style={{ display: 'flex', alignItems: 'center' }}
-          >
-            <Image src={IconService.DeleteRedRounded} alt='' className='cursor-pointer' />
+          <>
+            <CommonActions onMenuItemClick={handleMenuItemClick} menuLabels={menuLabels} />
+          </>
+        )
+      }
+    }
+  ]
 
-            <div
-              style={{
-                height: '12px',
-                width: '2px',
-                backgroundColor: 'gray',
-                margin: '5px 2px',
-                display: 'inline-block'
-              }}
-            ></div>
+  const { getallrole } = useSelector(({ RoleSlice }) => RoleSlice)
+  console.log('Gettallrole', getallrole)
 
-            <Image
-              src={IconService.groups}
-              alt=""
-              // onClick={() => handleGroupsClick(row.original)}
-              className="cursor-pointer"
-            />
-          </div>
-        );
-      },
-    },
-  ];
+  const handleSearch = query => {
+    console.log('Search query:', query)
+    if (getallrole?.data?.data) {
+      const filtered = getallrole.data.data.filter(
+        item =>
+          item.roleName.toLowerCase().includes(query.toLowerCase()) 
+      )
+      console.log('Filtered data:', filtered)
+      setFilteredData(filtered)
+    }
+  }
+
+
   return (
     <div>
       <div style={{ marginBottom: '20px' }}>
-        <TableHeaderRole serachFunction={(e: number) => e} />
+        <TableHeaderRole searchFunction={handleSearch} />
       </div>
-      <Table columns={columns} data={userData} pagination={true}/>
+      {getallrole?.data?.data?.length > 0 && (
+        <Table
+          columns={columns}
+          data={filteredData.length > 0 ? filteredData : getallrole ? getallrole?.data?.data : []}
+          pagination={true}
+        />
+      )}
     </div>
   )
 }
 
-export default RoleTable ;
+export default RoleTable

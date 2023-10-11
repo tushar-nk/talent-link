@@ -10,7 +10,6 @@ body {
 code {
   font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
-  /* font-family: 'Roboto'; */
   padding: 0.1rem 0.4rem;
   font-size: 90%;
   color: #d400ff;
@@ -51,25 +50,44 @@ code[class*='language-'] {
   overflow-x: scroll;
 }
 th {
-  color: var(--primary-font-1, #231942);
+  color: var(--primary-font-1, #001679);
   font-size: 16px;
-  /* font-family: 'Roboto', sans-serif; */
-  font-style: normal;
+  font-family: 'Roboto', sans-serif;
+  /* font-style: normal; */
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  justify-content: center;
+  padding: 0px 0px;
+}
+/* th:nth-last-child() {
+  color: var(--primary-font-1, #021776);
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   line-height: 20px;
   text-align: center;
   padding: 0px 0px;
-}
+} */
 td {
-  color: var(--primary-font-1, #474973);
+  color: var(--primary-font-1, #20548b);
   font-size: 16px;
   /* font-family: 'Roboto', sans-serif; */
-  font-style: normal;
+  /* font-style: normal; */
+  font-weight: 400;
+  line-height: 20px;
+  text-align: start;
+  padding: 0px 0px;
+}
+/* td:nth-last-child(4){
+  color: var(--primary-font-1, #20548b);
+  font-size: 16px;
+ font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 20px;
   text-align: center;
   padding: 0px 0px;
-}
+} */
 
 table thead tr,
 table tbody tr:not(:last-child) {
@@ -87,7 +105,7 @@ table tr td:first-child {
 
 table tr th:last-child,
 table tr td:last-child {
-  padding-right: 70px;
+  padding-right: 40px;
 }
 /* Style for the thumb (handle) of the vertical scrollbar */
 .table-container::-webkit-scrollbar-thumb {
@@ -127,14 +145,38 @@ table tr td:last-child {
 
 /* Table row hover effect */
 .consultation_table_body_row:hover {
-  background-color: #edf2fb;
+  /* background-color: #c4d9ff; */
   /* background-color: #eef0eb;  */
-  background-color: #f5f5f5;
+  background-color: #e2ecf9;
 }
 
 /* Table body cell */
 .consultation_table_body_text {
   padding: 8px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item .MuiSvgIcon-root {
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.menu-item:active {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* .center-align {
+  text-align: center !important;
+} */
+
+.sort-sec {
+  margin-top: 3px;
+  margin-left: 2px;
 }
 /** ============================== common table styles end ==================================   */
 
@@ -142,6 +184,7 @@ table tr td:last-child {
 ::-webkit-scrollbar {
   width: 3px !important;
   height: 2px !important;
+  display: none !important;
 }
 
 ::-webkit-scrollbar-track {
@@ -212,18 +255,6 @@ table tr td:last-child {
 .count {
   font-size: 30px !important;
 }
-.company-clr {
-  background-color: #b3c99c !important;
-}
-.resume-clr {
-  background-color: #adc4ce !important;
-}
-.categories-clr {
-  background-color: #84a7a1 !important;
-}
-.total-clr {
-  background-color: #dfccfb !important;
-}
 
 .hire-request-titles {
   font-size: 25px !important;
@@ -244,6 +275,18 @@ table tr td:last-child {
 }
 
 /* ------------------------------------------- DATE RANGE PIKER ------------------------------------------------ */
+.showDateRange {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+  border: 1px solid #f8954a;
+  border-radius: 5px;
+  padding: 10px;
+}
+.date-range {
+  font-weight: 700 !important;
+  color: #f8954a !important;
+}
 .dateRange {
   position: absolute;
   /* / top: 41%; / */
@@ -342,10 +385,6 @@ table tr td:last-child {
   color: white !important;
 }
 
-.rdrDayNumber {
-  /* width: 30px !important;  */
-}
-
 .rdrDay > .rdrInRange {
   color: #f9f6ff !important;
 }
@@ -367,32 +406,26 @@ table tr td:last-child {
   justify-content: space-around;
   align-items: center;
 }
-.selected-range .css-weqbci-MuiInputBase-root-MuiOutlinedInput-root{
+.selected-range .css-weqbci-MuiInputBase-root-MuiOutlinedInput-root {
   height: 40px !important;
   margin-right: 8px;
   width: 215px !important;
 }
-.apply{
-  background-color: #F8954A;
+.apply {
+  background-color: #f8954a;
 }
-.custom-datePicker{
-  width: 200px;
-  font-weight: 700 !important;
-}
+
 /* *********************************************************************************************** */
 .hire-details-card {
   padding: 20px;
   padding-top: 10px;
+  margin-top: 30px;
 }
 /* .card{
   width: 600px;
 } */
 .hire-details-card h4 {
   margin-bottom: 10px;
-}
-
-.role-edit {
-  width: 14%;
 }
 
 .react-datepicker__month-wrapper {
@@ -476,9 +509,45 @@ table tr td:last-child {
   margin-bottom: 30px;
 }
 
+/* ------------------------------------ROLE CSS -----------------------------*/
+.role-edit {
+  width: 14%;
+}
+.role-title{
+  margin-bottom: 30px;
+}
+.roledetails{
+  display: flex;
+  column-gap: 42px;
+}
+.role-textfield{
+  width: 50%;
+}
+.permission-checkbox{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.child-checkbox {
+  display: flex;
+  column-gap: 40px;
+}
+.checkbox-label {
+  margin-left: 10px !important;
+}
+.role-btns {
+  display: flex;
+  column-gap: 20px;
+  margin: 0px !important;
+}
 /* ================================== code V css==================================  */
 .form-layout {
   padding: 35px !important;
+  margin-top: 30px;
+}
+
+.hiredetails {
+  margin-top: 30px !important;
 }
 
 .image-align {
@@ -489,9 +558,10 @@ table tr td:last-child {
   padding-left: 0px !important;
 }
 
-.error-msg {
-  color: red;
-  font-size: 14px;
+.error-msg .css-1sxd8vz-MuiFormHelperText-root {
+  color: red !important;
+  font-size: 14px !important;
+  margin-left: 0px !important;
 }
 
 .login-box {
@@ -506,7 +576,8 @@ table tr td:last-child {
 }
 
 .resume-layout {
-  margin-bottom: 25px;
+  margin-bottom: 25px !important;
+  margin-top: 30px !important;
 }
 
 .skill-title {
@@ -518,33 +589,54 @@ table tr td:last-child {
   padding: 20px !important;
 }
 
-.role-edit {
-  width: 11% !important;
+.resume-data .css-19qpywn-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 4.5px 14px;
 }
 
-.resume-data {
-  padding: 5px;
-  font-size: 15px;
+.profiletypo .css-10nslt8-MuiTypography-root {
+  font-size: 14.4px;
 }
+
+.css-12nay7z-MuiTypography-root {
+  margin-left: 0px !important;
+}
+
+.css-1hqwshy-MuiTypography-root {
+  margin-left: 12px !important;
+}
+
+.resume-box {
+  overflow-y: auto !important;
+  max-height: 400px;
+  margin: 2rem !important;
+}
+
+.resume-sub-box {
+  padding: 1.5rem !important;
+}
+
+.delete-icon {
+  padding: 0px 5px 10px 0px !important;
+  float: right !important;
+}
+
+.resume-field {
+  padding-bottom: 0.5rem !important;
+}
+
+.add-box {
+  margin: 25px 0px 0px 35px !important;
+}
+
+.css-apkn5r-MuiInputBase-root-MuiInput-root:before,
+.css-apkn5r-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: none !important;
+}
+
 /* .form-layout {
   padding: 25px 55px 25px 55px !important;
 }
 
-.request-layout {
-  padding: 55px 55px 55px 55px !important;
-}
-
-.request-layout-btn {
-  padding: 0px 55px 55px 55px !important;
-}
-
-.role-layout {
-  padding: 10px 70px;
-}
-
-.category-status .css-i9ga9f-MuiCardHeader-root {
-  padding: 0px !important;
-} */
 
 /* ================================== support-request card css==================================  */
 .support-request-category {
@@ -558,19 +650,105 @@ table tr td:last-child {
   gap: 40px;
   margin-bottom: 20px;
 }
-.open-color {
-  background-color: #9db2bf !important;
+.card-bg-color {
+  background-color: #b3c7d8 !important;
 }
-.progress-color {
-  background-color: #dde6ed !important;
+
+/* ================================== Pagination CSS Start ================================== */
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Vertically center the buttons */
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
-.resolved-color {
-  background-color: #eab2a0 !important;
+
+/* Style for the Previous button */
+.pagination-button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* Vertically center the button content */
 }
-.hold-color {
-  background-color: #a6bb8d !important;
+
+/* Add margin-right to create space between buttons */
+.pagination-button + .pagination-button {
+  margin-right: 10px; /* Adjust the spacing as needed */
 }
-.total-hired-color {
-  background-color: #eae7b1 !important;
+
+/* Style for the Next button */
+.pagination-button.next {
+  margin-left: auto; /* Push the Next button to the right */
 }
-/* ================================== support-request card css ends ==================================  */
+
+/* Style for the icon inside the buttons */
+.pagination-button .MuiSvgIcon-root {
+  width: 15px;
+  margin-right: 5px; /* Adjust the spacing as needed */
+}
+
+.company-space {
+  padding: 1.25rem !important;
+}
+/* Style for the page number in the center */
+.pagination-page-number {
+  margin: 0 10px; /* Adjust the spacing as needed */
+}
+
+/* ================================== Pagination CSS End ================================== */
+
+.main-layout-container {
+  overflow-y: auto;
+  height: 100%;
+}
+.main-layout-section {
+  padding: 2.5rem;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+
+
+.loader-item {
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.loader-item:before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));
+
+  background: -webkit-radial-gradient(
+    rgba(246, 238, 238, 0.8),
+    rgba(255, 255, 255, 0.8)
+  );
+}
+
+
+
+
+
+
+.arrow-icon {
+  cursor: pointer !important;
+}

@@ -1,63 +1,49 @@
-import {
-  Checkbox,
-  FormControlLabel,
-  Card,
-  useTheme,
-  Typography,
-  SvgIcon,
-  Button,
-} from "@mui/material";
+import { Card, useTheme, Button } from '@mui/material'
 
-import React, { useContext } from "react";
-import Image from "next/image";
-import IconService from 'src/@core/utils/Icons';
+import React from 'react'
 
-import TableHeaderSearch from "src/@core/table/TableHeaderSearch";
-import { useRouter } from "next/router";
-
-//   import CommonDateRangePicker from "@/components/Common/DateRange/DateRangePicker";
-
-
+import TableHeaderSearch from 'src/@core/table/TableHeaderSearch'
+import { useRouter } from 'next/router'
 
 interface TYPE {
-  isAddButton?: boolean;
-  data?: any;
-  serachFunction?:any;
+  isAddButton?: boolean
+  data?: any
+  searchFunction?: any
 }
 
-export default function TableHeaderSubject({ isAddButton,data,serachFunction }: TYPE) {
-  // const [isTrue, setIsTrue] = React.useState<boolean>(false);
-  const theme = useTheme();
-  const router = useRouter();
-
+export default function TableHeaderSubject({ isAddButton, data, searchFunction }: TYPE) {
+  const theme = useTheme()
+  const router = useRouter()
 
   const handleButtonClick = () => {
-      // Navigate to the desired page when the button is clicked
-      router.push('/pages/users/user_details');
-    };
+    router.push('/pages/users/userdetails')
+  }
+
+  
+
+  
 
   return (
     <>
       <Card
-        variant="outlined"
-        className="common-table-header"
+        variant='outlined'
+        className='common-table-header'
         style={{
-          // background: theme.palette.primary.light,
           borderRadius: '16px',
           background: theme.palette.primary.light,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '40rem',
+          gap: '45rem',
           padding: '5px',
-          border: 'none',
+          border: 'none'
         }}
- 
       >
-              <TableHeaderSearch serachFunction={(e)=>serachFunction(e)} />
-              <Button onClick={handleButtonClick} variant="contained">ADD</Button>
- 
+        <TableHeaderSearch onSearch={(query: string) => searchFunction(query)} /> 
+        <Button onClick={handleButtonClick} variant='contained'>
+          ADD
+        </Button>
       </Card>
     </>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { Grid } from '@mui/material'
 import React from 'react'
+import { Grid } from '@mui/material'
 import Certification from 'src/views/hire-request/hire/Certification'
 import CompanyDetails from 'src/views/hire-request/hire/CompanyDetails'
 import Education from 'src/views/hire-request/hire/Education'
@@ -8,7 +8,6 @@ import EmployeeProfile from 'src/views/hire-request/hire/EmployeeProfile'
 import HireDetails from 'src/views/hire-request/hire/HireDetails'
 import ProjectBrief from 'src/views/hire-request/hire/ProjectBrief'
 import Rating from 'src/views/hire-request/hire/Rating'
-import SimilarProfile from 'src/views/hire-request/hire/SimilarProfile'
 import TechnicalSkill from 'src/views/hire-request/hire/TechnicalSkill'
 
 const index = () => {
@@ -40,10 +39,9 @@ const index = () => {
             </Grid>
           </Grid>
         </div>
-        <SimilarProfile />
       </div>
     </>
   )
 }
 
-export default index
+export default index;

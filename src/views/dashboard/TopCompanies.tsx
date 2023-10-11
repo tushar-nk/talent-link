@@ -20,7 +20,7 @@ const TopCompanies = () => {
       }
     },
     fill:{
-      colors:["#00A88F","#323B81"]
+      colors:["#1C4E80","#0091D5"]
     }
   })
   const [series, setSeries] = useState([

@@ -1,122 +1,128 @@
 import React, { useState } from 'react'
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete'
+import { Card, Grid, CardHeader, TextField, Button, IconButton, Box, CardContent, Input } from '@mui/material'
+import { Add as AddIcon, Delete as DeleteIcon } from '@mui/icons-material'
+import { useFormik } from 'formik'
+
+const initialBox = {
+  title: '',
+  description: ''
+}
+
+let nextId = 1
+
+function generateUniqueId() {
+  return nextId++
+}
 
 export default function TestimonialCard() {
-  const [educationDetails, setEducationDetails] = useState([])
-  const [isEditing, setIsEditing] = useState(false)
-  const [editIndex, setEditIndex] = useState(-1)
-  const [newSchool, setNewSchool] = useState('')
-  const [newDegree, setNewDegree] = useState('')
-  const [newYears, setNewYears] = useState('')
+  const [boxes, setBoxes] = useState([{ ...initialBox, id: generateUniqueId() }])
+  const [setSelectedFile] = useState(null)
 
-  const handleAddEducation = () => {
-    if (!isEditing) {
-      setIsEditing(true)
-    } else if (editIndex === -1) {
-      const newEntry = {
-        school: newSchool,
-        degree: newDegree,
-        years: newYears
-      }
+  const handleFileChange = event => {
+    const file = event.target.files[0]
+    setSelectedFile(file)
+  }
 
-      setEducationDetails([...educationDetails, newEntry])
-
-      // Clear the input fields
-      setNewSchool('')
-      setNewDegree('')
-      setNewYears('')
-      setIsEditing(false)
-    } else {
-      const updatedEducationDetails = [...educationDetails]
-      updatedEducationDetails[editIndex] = {
-        school: newSchool,
-        degree: newDegree,
-        years: newYears
-      }
-
-      setEducationDetails(updatedEducationDetails)
-
-      // Clear the input fields
-      setNewSchool('')
-      setNewDegree('')
-      setNewYears('')
-      setIsEditing(false)
-      setEditIndex(-1)
+  const formik = useFormik({
+    initialValues: initialBox,
+    onSubmit: values => {
+      console.log(values)
     }
+  })
+
+  const handleAddBox = () => {
+    const newBox = { ...initialBox, id: generateUniqueId() }
+    setBoxes(prevBoxes => [newBox, ...prevBoxes])
   }
 
-  const handleEditEducation = index => {
-    const eduToEdit = educationDetails[index]
-    setNewSchool(eduToEdit.school)
-    setNewDegree(eduToEdit.degree)
-    setNewYears(eduToEdit.years)
-    setIsEditing(true)
-    setEditIndex(index)
+  const handleDeleteBox = id => {
+    const updatedBoxes = boxes.filter(box => box.id !== id)
+    setBoxes(updatedBoxes)
   }
 
-  const handleDeleteEducation = index => {
-    const updatedEducationDetails = [...educationDetails]
-    updatedEducationDetails.splice(index, 1)
-
-    setEducationDetails(updatedEducationDetails)
-  }
-
+  const handleInputChange = (boxId, fieldName, value) => {
+    const updatedBoxes = boxes.map(box => {
+      if (box.id === boxId) {
+        return { ...box, [fieldName]: value };
+      }
+      
+      return box; 
+    });
+  
+    setBoxes(updatedBoxes);
+  };
+  
   return (
-    <Card className='resume-layout'>
-      <CardHeader title='Testimonials' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
-      <Box sx={{ margin: 10 }}>
-        <Box sx={{ display: 'flex' }}>
-          <Typography sx={{ fontSize: '20px' }}>Testimonials</Typography>
-          <AddCircleIcon sx={{ marginLeft: 8, cursor: 'pointer', marginTop: 1 }} onClick={handleAddEducation} />
+    <form onSubmit={formik.handleSubmit}>
+      <Card className='resume-layout'>
+        <CardHeader title='Testimonials' className='resume-title' titleTypographyProps={{ variant: 'h6' }} />
+        <Button
+          type='button'
+          variant='outlined'
+          startIcon={<AddIcon />}
+          onClick={handleAddBox}
+          color='primary'
+          className='add-box'
+        >
+          Add Box
+        </Button>
+        <Box className='resume-box' sx={{ margin: 10 }}>
+          {boxes.map((box, index) => (
+            <Box key={box.id} mb={2} border={1} borderRadius={2} p={2} className='resume-sub-box'>
+              <IconButton
+                className='delete-icon'
+                size='small'
+                color='secondary'
+                onClick={() => handleDeleteBox(box.id)}
+              >
+                <DeleteIcon />
+              </IconButton>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} className='resume-field'>
+                  <TextField
+                    fullWidth
+                    label='Title'
+                    placeholder=''
+                    value={box.title || ''}
+                    onChange={event => handleInputChange(box.id, 'title', event.target.value)}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched[`title-${index}`] && formik.errors[`title-${index}`] && (
+                    <div className='error-message'>{formik.errors[`title-${index}`]}</div>
+                  )}
+                </Grid>
+                <Grid item xs={12} sm={12} className='resume-field'>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={2}
+                    label='Description Of Reward'
+                    placeholder=''
+                    value={box.description || ''}
+                    onChange={event => handleInputChange(box.id, 'description', event.target.value)}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched[`description-${index}`] && formik.errors[`description-${index}`] && (
+                    <div className='error-message'>{formik.errors[`description-${index}`]}</div>
+                  )}
+                </Grid>
+                <CardContent>
+                  <CardHeader
+                    title='Upload Photo'
+                    titleTypographyProps={{ variant: 'h2' }}
+                    className='support-subject'
+                  />
+                  <Grid container spacing={5}>
+                    <Grid item xs={12} sm={12}>
+                      <Input type='file' name='photo' onChange={handleFileChange} />
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Grid>
+            </Box>
+          ))}
         </Box>
-        {educationDetails.map((edu, index) => (
-          <Box key={index} sx={{ display: 'flex', marginTop: 8 }}>
-            <>
-              <div>
-                <Typography variant='h6'>{edu.school}</Typography>
-                <Typography>{edu.degree}</Typography>
-                <Typography>{edu.years}</Typography>
-              </div>
-              <div>
-                <EditIcon sx={{ marginLeft: 20, cursor: 'pointer' }} onClick={() => handleEditEducation(index)} />
-                <DeleteIcon sx={{ marginLeft: 6, cursor: 'pointer' }} onClick={() => handleDeleteEducation(index)} />
-              </div>
-            </>
-          </Box>
-        ))}
-        {isEditing && (
-          <Box sx={{ display: 'flex', marginTop: 8, height: 30, gap: 3 }}>
-            <input
-              type='text'
-              placeholder='School'
-              value={newSchool}
-              onChange={e => setNewSchool(e.target.value)}
-              className='resume-data'
-            />
-            <input
-              type='text'
-              placeholder='Degree'
-              value={newDegree}
-              onChange={e => setNewDegree(e.target.value)}
-              className='resume-data'
-            />
-            <input
-              type='text'
-              placeholder='Years'
-              value={newYears}
-              onChange={e => setNewYears(e.target.value)}
-              className='resume-data'
-            />
-            <button onClick={handleAddEducation}>Save</button>
-          </Box>
-        )}
-      </Box>
-    </Card>
+      </Card>
+    </form>
   )
 }

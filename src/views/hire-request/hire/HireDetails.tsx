@@ -3,10 +3,12 @@ import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
 import React from 'react'
+import CommonHeader from 'src/layouts/components/vertical/Header'
 
 const HireDetails = () => {
   return (
     <>
+    <CommonHeader/>
       <Card className='hire-details-card '>
         <div>
           <Typography className='hire-request-titles'>Hire Details</Typography>
@@ -46,7 +48,7 @@ const HireDetails = () => {
           </Grid>
           <Grid item xs={4}>
             <Typography className='switch-name'>Approve</Typography>
-            <Switch color='primary' defaultChecked />
+            <Switch color='primary'  />
           </Grid>
         </Grid>
       </Card>

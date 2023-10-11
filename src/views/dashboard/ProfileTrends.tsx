@@ -22,7 +22,7 @@ const ProfileTrends = () => {
       categories: [2001, 2002, 2003, 2004, 2005]
     },
     fill:{
-      colors:["#00A88F"]
+      colors:["#A5D8DD"]
     }
   })
   const [series, setSeries] = useState([

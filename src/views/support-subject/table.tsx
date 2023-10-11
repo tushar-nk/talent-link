@@ -1,82 +1,128 @@
-import React from 'react'
-import Table from 'src/@core/table/Table';
-import IconService from 'src/@core/utils/Icons';
-import Image from "next/image";
-import { Divider } from '@mui/material';
-import TableHeader from '../role/TableHeaders';
-import TableHeaderSubject from './TableHeaders';
-
-
+import React, { useState, useEffect } from 'react'
+import Table from 'src/@core/table/Table'
+import TableHeaderSubject from './TableHeaders'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getAllSupportSubject,
+  hardDeleteSupportSubject,
+  softDeleteSupportSubject
+} from 'src/Store/Reducer/SupportSubjectSlice'
+import CommonActions from 'src/@core/utils/CommonActions'
+import { Chip } from '@mui/material'
+import { useRouter } from 'next/router'
 
 const SupportSubjectTable = () => {
-  const userData: any = [
-    {
-      id: 1,
-     skills: "User Management",
-    },
-    {
-      id: 2,
-     skills: "Profile Management",
-    },
-    {
-      id: 3,
-      skills: "Hire Management",
-    },
-  
-  ];
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const [filteredData, setFilteredData] = useState([])
+
+  interface UserData {
+    _id: number
+  }
+
+  useEffect(() => {
+    dispatch(getAllSupportSubject())
+  }, [dispatch])
+
+  const handleSoftDelete = async _id => {
+    try {
+      await dispatch(softDeleteSupportSubject({ _id: _id }))
+    } catch (error) {}
+  }
+
+  const handleHardDelete = async _id => {
+    try {
+      await dispatch(hardDeleteSupportSubject({ _id: _id }))
+    } catch (error) {}
+  }
+  const handleGroupsClick = (userData: UserData, mode: 'view' | 'edit') => {
+    router.push({
+      pathname: '/pages/support-subject/support-subject-details',
+      query: { userID: userData._id, mode: mode }
+    })
+  }
+
   const columns = [
     {
-      Header: " Skills",
-      accessor: "skills",
-     
-      // Cell: ({ value }: any) => (
-      //   <div style={{ display: 'flex', alignItems: 'center'  }}>{value}</div>
-      // )
+      Header: ' Support Subject',
+      accessor: 'supportSubject',
+      sort: true
     },
     {
-      Header: "Actions",
-      accessor: "actions",
-     
-      Cell: ({ value, row }: any) => {
-        return (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent:'center'}}>
-            <Image
-              src={IconService.DeleteRedRounded}
-              alt=""
-              className="cursor-pointer"
-            />
-
-<div
-        style={{
-          height: '12px',
-          width: '2px', 
-          backgroundColor: 'gray', 
-          margin: '0 2px', 
-          display: 'inline-block', 
-        }}
-      ></div>
-
-            <Image
-              src={IconService.groups}
-              alt=""
-              // onClick={() => handleGroupsClick(row.original)}
-              className="cursor-pointer"
-            />
-          </div>
-        );
-      },
+      Header: 'Delete',
+      accessor: 'isDeleted',
+      Cell: ({ value }) => {
+        const chipStyle = {
+          fontWeight: '500',
+          backgroundColor: value ? 'rgb(76 175 80 / 30%)' : 'rgb(239 83 80 / 30%)',
+          color: value ? '#1b5e20' : '#c62828'
+        }
+        return <Chip label={value ? 'True' : 'False'} style={chipStyle} />
+      }
     },
-  ];
+    {
+      Header: 'Status',
+      accessor: 'isActive',
+      Cell: ({ value }) => {
+        const chipStyle = {
+          fontWeight: '500',
+          backgroundColor: value ? 'rgb(76 175 80 / 30%)' : 'rgb(239 83 80 / 30%)',
+          color: value ? '#1b5e20' : '#c62828'
+        }
+        return <Chip label={value ? 'Active' : 'InActive'} style={chipStyle} />
+      }
+    },
+    {
+      Header: 'Actions',
+      accessor: 'actions',
+      Cell: ({ row }) => {
+        const menuLabels = ['View', 'Edit', 'Soft Delete', 'Hard Delete']
+        const handleMenuItemClick = (key) => {
+          if (key === 'Edit') {
+            handleGroupsClick(row.original, 'edit')
+          } else if (key === 'View') {
+            handleGroupsClick(row.original, 'view')
+          } else if (key === 'Soft Delete') {
+            handleSoftDelete(row?.original?._id)
+          } else if (key === 'Hard Delete') {
+            handleHardDelete(row?.original?._id)
+          }
+        }
+
+        return (
+          <>
+            <CommonActions onMenuItemClick={handleMenuItemClick} menuLabels={menuLabels} />
+          </>
+        )
+      }
+    }
+  ]
+
+  const handleSearch = query => {
+    if (GetAllSupportSubject?.data?.data) {
+      const filtered = GetAllSupportSubject.data.data.filter(item =>
+        item.supportSubject.toLowerCase().includes(query.toLowerCase())
+      )
+      setFilteredData(filtered)
+    }
+  }
+
+  const { GetAllSupportSubject } = useSelector(({ SupportSubjectSlice }) => SupportSubjectSlice)
+
   return (
     <div>
-          <div style={{ marginBottom: '20px' }}>
-          <TableHeaderSubject
-          serachFunction={(e: number) => (e)}
+      <div style={{ marginBottom: '20px' }}>
+        <TableHeaderSubject searchFunction={handleSearch} />
+      </div>
+      {GetAllSupportSubject?.data?.data?.length > 0 && (
+        <Table
+          columns={columns}
+          data={filteredData.length > 0 ? filteredData : GetAllSupportSubject ? GetAllSupportSubject?.data?.data : []}
+          pagination={true}
         />
-        </div>
-          <Table columns={columns} data={userData}/>
+      )}
     </div>
   )
 }
 
-export default SupportSubjectTable ;
+export default SupportSubjectTable

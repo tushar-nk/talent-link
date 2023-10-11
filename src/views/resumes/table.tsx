@@ -2,20 +2,18 @@ import React, { useState } from 'react'
 import Table from 'src/@core/table/Table'
 import IconService from 'src/@core/utils/Icons'
 import Image from 'next/image'
-import { Divider, Typography, Chip } from '@mui/material'
-import TableHeader from '../role/TableHeaders'
+import { Chip } from '@mui/material'
 import TableHeaderResume from './TableHeaders'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import { useRouter } from 'next/router'
+import CommonActions from 'src/@core/utils/CommonActions'
 
 const ResumeManageTable = () => {
-  const router = useRouter();
-
+  const router = useRouter()
 
   const handleButtonClick = () => {
-      // Navigate to the desired page when the button is clicked
-      router.push('/pages/resumes/viewdetail');
-    };
+    router.push('/pages/resumes/viewdetail')
+  }
   const userData: any = [
     {
       id: 1,
@@ -26,7 +24,6 @@ const ResumeManageTable = () => {
       qualification: 'Computer Science',
       expericence: '5',
       age: '40'
-      //  active:"Yes"
     },
     {
       id: 2,
@@ -37,7 +34,6 @@ const ResumeManageTable = () => {
       qualification: 'Computer Science',
       expericence: '5',
       age: '38'
-      //  active:"No"
     },
     {
       id: 3,
@@ -48,7 +44,6 @@ const ResumeManageTable = () => {
       qualification: 'Computer Science',
       expericence: '5',
       age: '35'
-      //  active:"Yes"
     }
   ]
   const columns = [
@@ -74,25 +69,25 @@ const ResumeManageTable = () => {
     },
     {
       Header: ' Expericence',
-      accessor: 'expericence',
-    //   Cell: ({ value }:any) => {
-    //     return (
-    //       <div style={{ textAlign: 'center' }}> 
-    //         {value}
-    //       </div>
-    //     )
-    // }
-  },
+      accessor: 'expericence'
+      //   Cell: ({ value }:any) => {
+      //     return (
+      //       <div style={{ textAlign: 'center' }}>
+      //         {value}
+      //       </div>
+      //     )
+      // }
+    },
     {
       Header: ' Age',
-      accessor: 'age',
-    //   Cell: ({ value }:any) => {
-    //     return (
-    //       <div style={{ textAlign: 'center' }}> 
-    //         {value}
-    //       </div>
-    //     )
-    // }
+      accessor: 'age'
+      //   Cell: ({ value }:any) => {
+      //     return (
+      //       <div style={{ textAlign: 'center' }}>
+      //         {value}
+      //       </div>
+      //     )
+      // }
     },
     {
       Header: ' Active',
@@ -111,7 +106,9 @@ const ResumeManageTable = () => {
                 height: 24,
                 fontSize: '0.75rem',
                 textTransform: 'capitalize',
-                '& .MuiChip-label': { fontWeight: 500 }
+                '& .MuiChip-label': { fontWeight: 500 },
+                backgroundColor: isActive ? '#2e7d32' : '#c62828', // Dark colors
+                color: '#ffffff', // White font color
               }}
               label={isActive ? 'Yes' : 'No'}
               color={isActive ? 'success' : 'error'}
@@ -125,48 +122,14 @@ const ResumeManageTable = () => {
       accessor: 'actions',
 
       Cell: ({ value, row }: any) => {
+        const menuLabels = ['View', 'Edit', 'Soft Delete', 'Hard Delete'];
+        const handleMenuItemClick = (key, menuItem) => {
+          console.log(`Clicked: ${key} - ${menuItem}`);
+        }
         return (
-          <div 
-          style={{ display: 'flex', alignItems: 'center', justifyContent:'center' }}
-          >
-            <div onClick={handleButtonClick}>
-              <VisibilityIcon
-                style={{
-                  height: '24px',
-                  width: '24px',
-                  marginTop:'4px'
-
-                }}
-              />
-            </div>
-            <div
-              style={{
-                height: '12px',
-                width: '2px',
-                backgroundColor: 'gray',
-                margin: '0 2px',
-                display: 'inline-block'
-              }}
-            ></div>
-            <Image src={IconService.DeleteRedRounded} alt='' className='cursor-pointer' />
-
-            {/* <div
-              style={{
-                height: '12px',
-                width: '2px',
-                backgroundColor: 'gray',
-                margin: '0 2px',
-                display: 'inline-block'
-              }}
-            ></div> */}
-
-            {/* <Image
-              src={IconService.groups}
-              alt=''
-              // onClick={() => handleGroupsClick(row.original)}
-              className='cursor-pointer'
-            /> */}
-          </div>
+          <>
+            <CommonActions onMenuItemClick={handleMenuItemClick} menuLabels={menuLabels} />
+          </>
         )
       }
     }

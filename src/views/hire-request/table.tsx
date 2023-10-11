@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import Table from 'src/@core/table/Table'
-import IconService from 'src/@core/utils/Icons'
-import Image from 'next/image'
-import { Divider, Typography, Chip, Button } from '@mui/material'
-import TableHeader from './TableHeaders'
+import { Chip } from '@mui/material'
 import TableHeaderHire from './TableHeaders'
 import { useRouter } from 'next/router'
-import VisibilityIcon from '@mui/icons-material/Visibility'
+import CommonActions from 'src/@core/utils/CommonActions'
 
 const HireRequestTable = () => {
   const router = useRouter()
 
   const handleButtonClick = () => {
-    // Navigate to the desired page when the button is clicked
     router.push('/pages/hire-request/hiredetails')
   }
   const userData: any = [
@@ -29,7 +25,6 @@ const HireRequestTable = () => {
       expericence: '5',
       age: '40',
       available: 'Yes'
-      //  approved:"Yes"
     },
     {
       id: 2,
@@ -44,7 +39,6 @@ const HireRequestTable = () => {
       expericence: '5',
       age: '38',
       available: 'No(avaliable after 3 Months)'
-      //  approved:"No"
     },
     {
       id: 3,
@@ -59,7 +53,6 @@ const HireRequestTable = () => {
       expericence: '5',
       age: '35',
       available: 'Yes'
-      //  approved:"No"
     }
   ]
   const columns = [
@@ -85,24 +78,20 @@ const HireRequestTable = () => {
     {
       Header: 'Request Date ',
       accessor: 'request_date',
-          Cell: ({ value }:any) => {
-        return (
-          <div style={{ whiteSpace: 'nowrap' }}> 
-            {value}
-          </div>
-        )
-    }
+      Cell: ({ value }: any) => {
+        return <div style={{ whiteSpace: 'nowrap' }}>{value}</div>
+      }
     },
     {
       Header: 'Hiring Period ',
-      accessor: 'hiring_period',
-    //   Cell: ({ value }:any) => {
-    //     return (
-    //       <div style={{ whiteSpace: 'nowrap' }}> 
-    //         {value}
-    //       </div>
-    //     )
-    // }
+      accessor: 'hiring_period'
+      //   Cell: ({ value }:any) => {
+      //     return (
+      //       <div style={{ whiteSpace: 'nowrap' }}>
+      //         {value}
+      //       </div>
+      //     )
+      // }
     },
     {
       Header: ' Skills',
@@ -114,7 +103,8 @@ const HireRequestTable = () => {
     },
     {
       Header: ' Expericence',
-      accessor: 'expericence'
+      accessor: 'expericence',
+      className: 'center-align',
     },
     {
       Header: ' Age',
@@ -127,6 +117,7 @@ const HireRequestTable = () => {
     {
       Header: 'Approved',
       accessor: 'approved',
+      className: 'center-align',
 
       Cell: ({}) => {
         const [isActive, setIsActive] = useState(true)
@@ -141,7 +132,9 @@ const HireRequestTable = () => {
                 height: 24,
                 fontSize: '0.75rem',
                 textTransform: 'capitalize',
-                '& .MuiChip-label': { fontWeight: 500 }
+                '& .MuiChip-label': { fontWeight: 500 },
+                backgroundColor: isActive ? '#2e7d32' : '#c62828', 
+                color: '#ffffff', 
               }}
               label={isActive ? 'Yes' : 'No'}
               color={isActive ? 'success' : 'error'}
@@ -154,83 +147,25 @@ const HireRequestTable = () => {
       Header: 'Actions',
       accessor: 'actions',
       Cell: ({ value, row }: any) => {
+        const menuLabels = ['View', 'Edit', 'Soft Delete', 'Hard Delete'];
+        const handleMenuItemClick = (key, menuItem) => {
+          console.log(`Clicked: ${key} - ${menuItem}`);
+        }
         return (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent:'center' }}>
-            <Image src={IconService.DeleteRedRounded} alt='' className='cursor-pointer custom-image' />
-
-            <div
-              style={{
-                height: '12px',
-                width: '2px',
-                backgroundColor: 'gray',
-                margin: '0 2px',
-                display: 'inline-block'
-              }}
-            ></div>
-            <div onClick={handleButtonClick}>
-             <VisibilityIcon
-                style={{
-                  height: '24px',
-                  width: '24px'
-                }}
-              />
-            </div>
-
-            {/* <Image
-              src={IconService.groups}
-              alt=''
-              // onClick={() => handleGroupsClick(row.original)}
-              className='cursor-pointer custom-image'
-            /> */}
-            {/* <div
-              style={{
-                height: '12px',
-                width: '2px',
-                backgroundColor: 'gray',
-                margin: '0 2px',
-                display: 'inline-block',
-              }}
-            ></div> */}
-
-            {/* <div onClick={handleButtonClick}>
-              <VisibilityIcon
-                style={{
-                  height: '24px',
-                  width: '24px'
-                }}
-              />
-            </div> */}
-          </div>
+          <>
+            <CommonActions onMenuItemClick={handleMenuItemClick} menuLabels={menuLabels} />
+          </>
         )
       }
-    },
-    // {
-    //   Header: 'View',
-    //   accessor: 'view',
-    //   Cell: ({ value, row }: any) => {
-    //     return (
-    //       <div style={{ display: 'flex', alignItems: 'center' }}>
-    //          <div onClick={handleButtonClick}>
-    //           <VisibilityIcon
-    //             style={{
-    //               height: '24px',
-    //               width: '24px'
-    //             }}
-    //           />
-    //         </div>
-    //       </div>
-    //     )
-    //   }
-    // }
-
+    }
   ]
   return (
     <div>
-      <div style={{ marginBottom: '20px' ,  whiteSpace: 'nowrap' }}>
+      <div style={{ marginBottom: '20px', whiteSpace: 'nowrap' }}>
         <TableHeaderHire serachFunction={(e: number) => e} />
       </div>
-      <div className="no-wrap-table"> 
-      <Table columns={columns} data={userData}  />
+      <div className='no-wrap-table'>
+        <Table columns={columns} data={userData} pagination={true} />
       </div>
     </div>
   )

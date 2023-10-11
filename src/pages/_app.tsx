@@ -29,6 +29,11 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 
 // ** Global css styles
 import '../../styles/globals.css'
+import { Provider } from "react-redux";
+import { store } from 'src/Store/Store'
+import LayoutProvider from 'src/@core/layouts/LoaderProvider'
+import { Toaster } from "react-hot-toast";
+
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -59,6 +64,10 @@ const App = (props: ExtendedAppProps) => {
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
   return (
+    <>
+    <Provider store={store}>
+    <LayoutProvider>
+    <Toaster position="top-right" reverseOrder={false} />
     <CacheProvider value={emotionCache}>
       <Head>
         <title>{`${themeConfig.templateName}`}</title>
@@ -69,15 +78,18 @@ const App = (props: ExtendedAppProps) => {
         <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-
+     
       <SettingsProvider>
         <SettingsConsumer>
           {({ settings }) => {
             return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
           }}
         </SettingsConsumer>
-      </SettingsProvider>
+      </SettingsProvider>  
     </CacheProvider>
+    </LayoutProvider>
+    </Provider>
+    </>
   )
 }
 

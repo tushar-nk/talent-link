@@ -1,54 +1,23 @@
 import React, { useState } from 'react'
 import {
-  FormControl,
-  Grid,
   Select,
   FormLabel,
   MenuItem,
-  Box,
   Card,
   CardContent,
   TextField,
-  Button,
-  Checkbox,
   FormControlLabel,
   RadioGroup,
   Radio,
-  Typography
+  CardHeader,
+  InputLabel,
+  FormControl
 } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import AvatarGroup from '@mui/material/AvatarGroup'
-import Avatar from '@mui/material/Avatar'
-import CardMedia from '@mui/material/CardMedia'
 
-const ProfileFilter = () => {
-  const [isIconClicked, setIsIconClicked] = useState(false)
-
-  const handleIconClick = () => {
-    setIsIconClicked(prevState => !prevState)
-  }
-
+const ProfileType = () => {
   return (
     <>
-      {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <FormControl sx={{ marginRight: '20px' }}>
-          <Select>
-            <MenuItem value={1}>Most Recent</MenuItem>
-            <MenuItem value={2}>Most Viewed</MenuItem>
-            <MenuItem value={3}>Most Searched</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl>
-          <Select>
-            <MenuItem value={1}>10 per page</MenuItem>
-            <MenuItem value={2}>20 per page</MenuItem>
-            <MenuItem value={3}>30 per page</MenuItem>
-          </Select>
-        </FormControl>
-      </div> */}
-
       <div>
         <Card style={{ marginBottom: '20px' }}>
           <CardContent style={{ flex: '1' }}>
@@ -60,6 +29,7 @@ const ProfileFilter = () => {
         </Card>
 
         <Card style={{ marginBottom: '20px' }}>
+          <CardHeader title='Job Type' />
           <CardContent style={{ flex: '1' }}>
             <FormControl>
               <RadioGroup
@@ -69,8 +39,6 @@ const ProfileFilter = () => {
               >
                 <FormControlLabel value='Full Time' control={<Radio />} label='Full Time' />
                 <FormControlLabel value='Part Time' control={<Radio />} label='Part Time' />
-                <FormControlLabel value='Intership' control={<Radio />} label='Intership' />
-                <FormControlLabel value='Contract Base' control={<Radio />} label='Contract' />
               </RadioGroup>
             </FormControl>
           </CardContent>
@@ -78,38 +46,60 @@ const ProfileFilter = () => {
 
         <Card style={{ marginBottom: '20px' }}>
           <CardContent style={{ flex: '1' }}>
-            <TextField
-              label='Company'
-              variant='outlined'
-              margin='normal'
-              InputProps={{
-                endAdornment: <AddCircleIcon onClick={handleIconClick} style={{ cursor: 'pointer' }} />
-              }}
-            />
-            <TextField
-              label='Designation'
-              variant='outlined'
-              margin='normal'
-              InputProps={{
-                endAdornment: <AddCircleIcon onClick={handleIconClick} style={{ cursor: 'pointer' }} />
-              }}
-            />
-            <TextField
-              label='Experience'
-              variant='outlined'
-              margin='normal'
-              InputProps={{
-                endAdornment: <AddCircleIcon onClick={handleIconClick} style={{ cursor: 'pointer' }} />
-              }}
-            />
-            <TextField
-              label='Qualification'
-              variant='outlined'
-              margin='normal'
-              InputProps={{
-                endAdornment: <AddCircleIcon onClick={handleIconClick} style={{ cursor: 'pointer' }} />
-              }}
-            />
+            <FormControl fullWidth>
+              <InputLabel>Company</InputLabel>
+              <Select
+                variant='outlined'
+                label='Company'
+                endAdornment={<AddCircleIcon style={{ cursor: 'pointer' }} />}
+                IconComponent={null}
+              >
+                <MenuItem value='Company1'>Seven Square</MenuItem>
+                <MenuItem value='Company2'>Tridhya Tech</MenuItem>
+                <MenuItem value='company3'>Upsquare</MenuItem>
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth sx={{ marginTop: '20px' }}>
+              <InputLabel>Designation</InputLabel>
+              <Select
+                variant='outlined'
+                label='Designation'
+                endAdornment={<AddCircleIcon style={{ cursor: 'pointer' }} />}
+                IconComponent={null}
+              >
+                <MenuItem value='Company1'>React Developer</MenuItem>
+                <MenuItem value='Company2'>Node Developer</MenuItem>
+                <MenuItem value='company3'>Flutter Developer</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl fullWidth sx={{ marginTop: '20px' }}>
+              <InputLabel>Experience</InputLabel>
+              <Select
+                variant='outlined'
+                label='Experience'
+                endAdornment={<AddCircleIcon style={{ cursor: 'pointer' }} />}
+                IconComponent={null}
+              >
+                <MenuItem value='Company1'>Fresher</MenuItem>
+                <MenuItem value='Company2'>1 Year</MenuItem>
+                <MenuItem value='company3'>2 Year</MenuItem>
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth sx={{ marginTop: '20px' }}>
+              <InputLabel>Qualification</InputLabel>
+              <Select
+                variant='outlined'
+                label='Qualification'
+                endAdornment={<AddCircleIcon style={{ cursor: 'pointer' }} />}
+                IconComponent={null}
+              >
+                <MenuItem value='Company1'>B.Tech/Cse</MenuItem>
+                <MenuItem value='Company2'>M.Tech/Cse</MenuItem>
+                <MenuItem value='company3'>Mca/Bca</MenuItem>
+              </Select>
+            </FormControl>
           </CardContent>
         </Card>
       </div>
@@ -117,4 +107,4 @@ const ProfileFilter = () => {
   )
 }
 
-export default ProfileFilter
+export default ProfileType

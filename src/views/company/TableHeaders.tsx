@@ -1,13 +1,8 @@
-import { Checkbox, FormControlLabel, Card, useTheme, Typography, SvgIcon, Button } from '@mui/material'
+import React from 'react'
+import { Card, useTheme, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 
-import React, { useContext } from "react";
-import Image from "next/image";
-import IconService from 'src/@core/utils/Icons';
-
-import TableHeaderSearch from "src/@core/table/TableHeaderSearch";
-
-//   import CommonDateRangePicker from "@/components/Common/DateRange/DateRangePicker";
+import TableHeaderSearch from 'src/@core/table/TableHeaderSearch'
 
 interface TYPE {
   isAddButton?: boolean
@@ -16,15 +11,12 @@ interface TYPE {
 }
 
 export default function TableHeaderCompany({ isAddButton, data, serachFunction }: TYPE) {
-  // const [isTrue, setIsTrue] = React.useState<boolean>(false);
   const theme = useTheme()
   const router = useRouter()
 
-
   const handleButtonClick = () => {
-    // Navigate to the desired page when the button is clicked
-    router.push('/pages/company/companydetails');
-  };
+    router.push('/pages/company/companydetails')
+  }
 
   return (
     <>
@@ -32,20 +24,20 @@ export default function TableHeaderCompany({ isAddButton, data, serachFunction }
         variant='outlined'
         className='common-table-header'
         style={{
-          // background: theme.palette.primary.light,
           borderRadius: '16px',
           background: theme.palette.primary.light,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: '40rem',
+          gap: '45rem',
           padding: '5px',
-          border:"none",
+          border: 'none'
         }}
       >
-              <TableHeaderSearch serachFunction={(e)=>serachFunction(e)} />
-              <Button onClick={handleButtonClick}  variant="contained" >ADD</Button>
- 
+        <TableHeaderSearch onSearch={e => serachFunction(e)} />
+        <Button onClick={handleButtonClick} variant='contained'>
+          ADD
+        </Button>
       </Card>
     </>
   )
